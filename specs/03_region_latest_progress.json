@@ -1,0 +1,200 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "domain": false,
+      "tickColor": "#9db3bb",
+      "gridColor": "#d7e0e3",
+      "labelColor": "#23404a",
+      "titleColor": "#23404a",
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 600
+    },
+    "legend": {
+      "labelColor": "#23404a",
+      "titleColor": "#23404a",
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    },
+    "header": {
+      "labelColor": "#23404a",
+      "titleColor": "#23404a",
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans"
+    },
+    "style": {
+      "guide-label": {
+        "font": "Public Sans"
+      },
+      "guide-title": {
+        "font": "Public Sans"
+      }
+    }
+  },
+  "data": {
+    "url": "./data/reportcard_targets_2021_2022.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.regionCode !== 'GBR'"
+    },
+    {
+      "filter": "indexof(['DIN','FS','PN','PP'], datum.measureCode) >= 0"
+    },
+    {
+      "filter": "isValid(datum.latestValue)"
+    },
+    {
+      "calculate": "0",
+      "as": "baseline"
+    }
+  ],
+  "facet": {
+    "row": {
+      "field": "shortLabel",
+      "sort": {
+        "field": "measureOrder",
+        "order": "ascending"
+      },
+      "title": null,
+      "header": {
+        "labelFontWeight": 700,
+        "labelOrient": "left",
+        "labelPadding": 8
+      }
+    }
+  },
+  "spec": {
+    "width": "container",
+    "height": 62,
+    "layer": [
+      {
+        "mark": {
+          "type": "rule",
+          "strokeWidth": 3,
+          "color": "#bfd0d7"
+        },
+        "encoding": {
+          "y": {
+            "field": "region",
+            "type": "ordinal",
+            "sort": [
+              "Cape York region",
+              "Wet Tropics region",
+              "Burdekin region",
+              "Mackay Whitsunday region",
+              "Fitzroy region",
+              "Burnett Mary region"
+            ],
+            "title": null
+          },
+          "x": {
+            "field": "baseline",
+            "type": "quantitative",
+            "scale": {
+              "domain": [
+                0,
+                2.4
+              ]
+            },
+            "axis": {
+              "title": "2021-2022 reduction (%)",
+              "tickCount": 5
+            }
+          },
+          "x2": {
+            "field": "latestValue"
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "size": 110,
+          "color": "#0f6e79",
+          "stroke": "#ffffff",
+          "strokeWidth": 1.2
+        },
+        "encoding": {
+          "y": {
+            "field": "region",
+            "type": "ordinal",
+            "sort": [
+              "Cape York region",
+              "Wet Tropics region",
+              "Burdekin region",
+              "Mackay Whitsunday region",
+              "Fitzroy region",
+              "Burnett Mary region"
+            ]
+          },
+          "x": {
+            "field": "latestValue",
+            "type": "quantitative"
+          },
+          "tooltip": [
+            {
+              "field": "region",
+              "title": "Region"
+            },
+            {
+              "field": "measure",
+              "title": "Measure"
+            },
+            {
+              "field": "latestValue",
+              "title": "2021-2022 reduction (%)",
+              "format": ".1f"
+            }
+          ]
+        }
+      },
+      {
+        "mark": {
+          "type": "text",
+          "align": "left",
+          "baseline": "middle",
+          "dx": 8,
+          "fontSize": 11,
+          "color": "#23404a"
+        },
+        "encoding": {
+          "y": {
+            "field": "region",
+            "type": "ordinal",
+            "sort": [
+              "Cape York region",
+              "Wet Tropics region",
+              "Burdekin region",
+              "Mackay Whitsunday region",
+              "Fitzroy region",
+              "Burnett Mary region"
+            ]
+          },
+          "x": {
+            "field": "latestValue",
+            "type": "quantitative"
+          },
+          "text": {
+            "field": "latestValue",
+            "format": ".1f"
+          }
+        }
+      }
+    ]
+  }
+}

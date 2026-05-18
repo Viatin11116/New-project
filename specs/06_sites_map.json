@@ -1,0 +1,349 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  },
+  "projection": {
+    "type": "mercator",
+    "center": [
+      146.8,
+      -19.1
+    ],
+    "scale": 2000
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "./data/world-110m.json",
+        "format": {
+          "type": "topojson",
+          "feature": "countries"
+        }
+      },
+      "transform": [
+        {
+          "filter": "datum.id == 36"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#edf3f4",
+        "stroke": "#7b9196",
+        "strokeWidth": 1.2
+      }
+    },
+    {
+      "data": {
+        "url": "./data/aims_site_summary.csv"
+      },
+      "transform": [
+        {
+          "filter": "datum.period === '2024-2025'"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "opacity": 0.16,
+        "size": 18,
+        "color": "#7aaebb"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "./data/map_flow_paths.csv"
+      },
+      "mark": {
+        "type": "trail",
+        "interpolate": "monotone",
+        "opacity": 0.84
+      },
+      "encoding": {
+        "longitude": {
+          "field": "longitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "latitude",
+          "type": "quantitative"
+        },
+        "detail": {
+          "field": "regionCode"
+        },
+        "order": {
+          "field": "sortOrder"
+        },
+        "size": {
+          "field": "dischargeGl",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              6,
+              18
+            ]
+          },
+          "legend": null
+        },
+        "color": {
+          "field": "wetSeasonMedianSS",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0.8,
+              2.6
+            ],
+            "range": [
+              "#e6c86b",
+              "#c96a34"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "displayName",
+            "title": "Region"
+          },
+          {
+            "field": "dischargeGl",
+            "title": "Discharge (GL)",
+            "format": ","
+          },
+          {
+            "field": "rainfallMm",
+            "title": "Rainfall (mm)",
+            "format": ","
+          },
+          {
+            "field": "wetSeasonMedianSS",
+            "title": "Wet-season median SS",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "./data/map_flow_regions.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "size": 140,
+        "color": "#34525b",
+        "stroke": "#ffffff",
+        "strokeWidth": 1.4
+      },
+      "encoding": {
+        "longitude": {
+          "field": "sourceLongitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "sourceLatitude",
+          "type": "quantitative"
+        },
+        "tooltip": [
+          {
+            "field": "displayName",
+            "title": "Region"
+          },
+          {
+            "field": "dischargeGl",
+            "title": "Discharge (GL)",
+            "format": ","
+          },
+          {
+            "field": "rainfallMm",
+            "title": "Rainfall (mm)",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "./data/map_flow_regions.csv"
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "font": "Public Sans",
+            "fontSize": 13,
+            "fontWeight": 800,
+            "color": "#17333b",
+            "dx": -12,
+            "dy": -9
+          },
+          "encoding": {
+            "longitude": {
+              "field": "labelLongitude",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "nameLatitude",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "displayName"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "data": {
+        "url": "./data/map_flow_regions.csv"
+      },
+      "mark": {
+        "type": "circle",
+        "opacity": 0.96,
+        "stroke": "#fffef9",
+        "strokeWidth": 1.8
+      },
+      "encoding": {
+        "longitude": {
+          "field": "targetLongitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "targetLatitude",
+          "type": "quantitative"
+        },
+        "size": {
+          "field": "sampleCount",
+          "type": "quantitative",
+          "scale": {
+            "range": [
+              800,
+              2500
+            ]
+          },
+          "legend": null
+        },
+        "color": {
+          "field": "wetSeasonMedianSS",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0.8,
+              2.6
+            ],
+            "range": [
+              "#e6c86b",
+              "#c96a34"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "displayName",
+            "title": "Region"
+          },
+          {
+            "field": "sampleCount",
+            "title": "Regional samples",
+            "format": ","
+          },
+          {
+            "field": "wetSeasonMedianSS",
+            "title": "Wet-season median SS",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "url": "./data/map_flow_regions.csv"
+      },
+      "mark": {
+        "type": "text",
+        "font": "Public Sans",
+        "fontSize": 15,
+        "fontWeight": 800,
+        "color": "#16313a"
+      },
+      "encoding": {
+        "longitude": {
+          "field": "targetLongitude",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "targetLatitude",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "regionCode"
+        }
+      }
+    },
+    {
+      "data": {
+        "url": "./data/map_cities.csv"
+      },
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "size": 42,
+            "color": "#6a8088"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "longitude",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "latitude",
+              "type": "quantitative"
+            }
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "baseline": "middle",
+            "font": "Public Sans",
+            "fontSize": 11,
+            "fontWeight": 700,
+            "color": "#35515b"
+          },
+          "encoding": {
+            "longitude": {
+              "field": "labelLongitude",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "labelLatitude",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "city"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

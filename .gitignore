@@ -1,0 +1,8 @@
+.chrome-headless/
+.edge-headless/
+App10/
+edge-dom.txt
+index-zh.html
+app-zh.js
+Thumbs.db
+.DS_Store

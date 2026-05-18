@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Land Runoff and Reef Water Quality</title>
+    <meta
+      name="description"
+      content="Poster-style data visualisation about land runoff and reef water quality in the Great Barrier Reef catchments."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="poster">
+      <aside class="title-rail">
+        <p class="rail-label">FIT2179 Data Visualisation 2</p>
+        <div class="title-stack">
+          <span>LAND</span>
+          <span>RUNOFF</span>
+        </div>
+        <div class="title-divider"></div>
+        <p class="title-subline">AND REEF WATER QUALITY</p>
+
+        <div class="rail-notes">
+          <div class="mini-panel">
+            <span class="mini-kicker">Why this matters</span>
+            <p>
+              The Reef's inshore water is shaped by what happens upstream: runoff, discharge,
+              nutrients, sediment and pesticide risk.
+            </p>
+          </div>
+          <div class="mini-panel">
+            <span class="mini-kicker">Audience</span>
+            <p>
+              A general Australian audience that needs a readable, one-page explanation rather
+              than an expert dashboard.
+            </p>
+          </div>
+        </div>
+      </aside>
+
+      <main class="poster-body">
+        <header class="hero-grid">
+          <div class="intro-copy hero-copy">
+            <div class="section-pill">Story focus</div>
+            <h1>Runoff still leaves a visible footprint on Reef water.</h1>
+            <p>
+              This page combines the latest public Reef Report Card with recent AIMS monitoring.
+              The story is more focused than a dashboard: targets have improved in places, but
+              inshore water still carries the signatures of runoff through sediment, salinity,
+              clarity and chlorophyll.
+            </p>
+
+            <div class="stat-row">
+              <div class="stat-pill">
+                <strong>42.4M ha</strong>
+                <span>catchment area draining toward the Reef</span>
+              </div>
+              <div class="stat-pill">
+                <strong>73,501 GL</strong>
+                <span>annual discharge to the coast</span>
+              </div>
+              <div class="stat-pill">
+                <strong>779</strong>
+                <span>recent AIMS samples in the latest extract</span>
+              </div>
+            </div>
+          </div>
+
+          <article class="panel panel--hero">
+            <div class="panel-copy">
+              <h2>Target progress at Reef-wide scale</h2>
+              <p>
+                Policy progress exists, but nitrogen and sediment are still well short of the
+                2025 goalposts.
+              </p>
+            </div>
+            <div class="vega-slot vega-slot--hero" data-chart="01_overview_attainment"></div>
+          </article>
+        </header>
+
+        <section class="panel panel--wide panel--heatmap">
+          <div class="section-pill">Regional pressure map</div>
+          <div class="wide-head">
+            <div>
+              <h2>Weak grades cluster by region and pollutant type.</h2>
+            </div>
+            <p>
+              The heatmap gives the fastest overview of where runoff pressure remains most
+              persistent across the catchments.
+            </p>
+          </div>
+          <div class="vega-slot vega-slot--wide" data-chart="02_region_grade_heatmap"></div>
+        </section>
+
+        <section class="panel panel--wide panel--map">
+          <div class="section-pill">Main map</div>
+          <div class="wide-head">
+            <div>
+              <h2>Different catchments feed different parts of the Reef coast.</h2>
+            </div>
+            <p>
+              The map keeps the real Queensland coastline, then links inland catchment-side
+              regions to the coastal waters they influence. Wider bands show larger discharge,
+              warmer colour shows dirtier wet-season water, and the right-hand summary ranks
+              the same coastal zones by wet-season suspended solids.
+            </p>
+          </div>
+          <div class="map-combo">
+            <div class="vega-slot vega-slot--map-panel" data-chart="06_sites_map"></div>
+            <div class="vega-slot vega-slot--map-summary" data-chart="12_region_ss_summary"></div>
+          </div>
+        </section>
+
+        <section class="panel-grid panel-grid--two">
+          <article class="panel panel--analysis">
+            <div class="panel-copy">
+              <h2>Official inshore water quality stayed moderate or poor</h2>
+              <p>
+                No region in the latest official condition results reached "good" or "very good"
+                in inshore water quality.
+              </p>
+            </div>
+            <div class="vega-slot" data-chart="04_condition_lollipop"></div>
+          </article>
+
+          <article class="panel panel--analysis">
+            <div class="panel-copy">
+              <h2>Big discharge does not guarantee strong nitrogen gains</h2>
+              <p>
+                Wetter, high-discharge regions are not automatically the regions closest to their
+                dissolved inorganic nitrogen target.
+              </p>
+            </div>
+            <div class="vega-slot" data-chart="05_discharge_din_bubble"></div>
+          </article>
+        </section>
+
+        <section class="panel-grid panel-grid--two">
+          <article class="panel panel--analysis">
+            <div class="panel-copy">
+              <h2>Suspended solids still vary sharply from site to site</h2>
+              <p>
+                Even within the same broad region, some monitored sites remain consistently
+                murkier than others.
+              </p>
+            </div>
+            <div class="vega-slot" data-chart="07_ss_boxplot"></div>
+          </article>
+
+          <article class="panel panel--analysis">
+            <div class="panel-copy">
+              <h2>Wet-season water is usually dirtier than dry-season water</h2>
+              <p>
+                The seasonal contrast is one of the clearest signs that runoff pulses are still
+                shaping inshore water.
+              </p>
+            </div>
+            <div class="vega-slot" data-chart="10_wet_dry_connected_dots"></div>
+          </article>
+        </section>
+
+        <section class="panel panel--wide panel--story">
+          <div class="section-pill">Annual change</div>
+          <div class="wide-head">
+            <div>
+              <h2>Annual policy gains are real, but they are usually small.</h2>
+            </div>
+            <p>
+              Year-on-year reductions matter, but most regions are still advancing in increments
+              rather than leaps.
+            </p>
+          </div>
+          <div class="vega-slot vega-slot--tall" data-chart="03_region_latest_progress"></div>
+        </section>
+
+        <section class="panel panel--wide panel--story">
+          <div class="section-pill">Seasonality</div>
+          <div class="wide-head">
+            <div>
+              <h2>Salinity drops through the wet months, consistent with freshwater runoff.</h2>
+            </div>
+            <p>
+              Monthly medians help show when river influence reaches the coastal water column most
+              strongly.
+            </p>
+          </div>
+          <div class="vega-slot vega-slot--wide" data-chart="08_monthly_salinity_lines"></div>
+        </section>
+
+        <section class="panel-grid panel-grid--two">
+          <article class="panel panel--analysis">
+            <div class="panel-copy">
+              <h2>More suspended solids usually means poorer clarity</h2>
+              <p>
+                Murkier water and shorter Secchi depth travel together, which is exactly what a
+                plume-affected water column should look like.
+              </p>
+            </div>
+            <div class="vega-slot" data-chart="09_ss_secchi_scatter"></div>
+          </article>
+
+          <article class="panel panel--analysis">
+            <div class="panel-copy">
+              <h2>Lower salinity often travels with higher chlorophyll</h2>
+              <p>
+                Fresher inshore water frequently coincides with more chlorophyll, linking runoff
+                conditions with biological response.
+              </p>
+            </div>
+            <div class="vega-slot" data-chart="11_salinity_chla_scatter"></div>
+          </article>
+        </section>
+
+        <section class="closing-band">
+          <div class="closing-copy">
+            <div class="section-pill">Takeaway</div>
+            <h2>The land-to-sea story is still unfinished.</h2>
+            <p>
+              The combined evidence does not describe a Reef that is simply recovered or fixed.
+              It describes a system where some targets are improving slowly, but where inshore
+              waters still react strongly to runoff, plume conditions and wet-season discharge.
+            </p>
+          </div>
+
+          <div class="meta-grid">
+            <div class="meta-card">
+              <h3>Metadata</h3>
+            </div>
+
+            <div class="meta-card">
+              <h3>Sources</h3>
+            </div>
+
+            <div class="meta-card">
+              <h3>Notes</h3>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="./vendor/vega.min.js"></script>
+    <script src="./vendor/vega-lite.min.js"></script>
+    <script src="./vendor/vega-embed.min.js"></script>
+    <script src="./charts-inline.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>

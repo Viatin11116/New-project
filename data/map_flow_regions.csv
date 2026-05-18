@@ -1,0 +1,6 @@
+regionCode,displayName,rainfallMm,dischargeGl,sampleCount,wetSeasonMedianSS,sourceLongitude,sourceLatitude,targetLongitude,targetLatitude,labelLongitude,nameLatitude,metricLatitude
+CY,Cape York,1449,16415,199,0.82,142.55,-14.70,145.12,-14.15,141.95,-14.42,-14.98
+WT,Wet Tropics,2063,23487,268,1.51,143.30,-17.75,145.98,-17.38,142.72,-17.47,-18.03
+BU,Burdekin,702,12721,139,1.67,143.95,-19.75,147.17,-19.27,143.34,-19.49,-20.05
+MW,Mackay Whitsunday,1550,6197,64,2.59,145.95,-20.95,148.84,-20.42,145.35,-20.69,-21.25
+FT,Fitzroy,716,9226,109,1.37,147.10,-23.55,150.94,-23.25,146.50,-23.28,-23.84

@@ -1,0 +1,74 @@
+regionCode,regionOrder,region,yearLabel,gradeLetter,gradeLabel,gradeRank,waterQualityCondition,waterQualityRank,areaHectares,rainfallMm,dischargeGl,narrative,sourceUrl
+GBR,0,Great Barrier Reef wide,2022,C,Moderate,3,Moderate,3,42400000,888,73501,"Overall, marine condition in the inshore Reef remained moderate, with inshore coral remaining in poor condition, seagrass meadow condition improving to moderate, and water quality declining to moderate. The Cape York region improved to moderate condition, while the Wet Tropics and Burdekin regions remained in moderate condition. The Mackay Whitsunday region remained in poor condition, while the Burnett Mary and Fitzroy regions declined to poor condition.  
+
+Inshore coral remained in an overall poor condition in 2022, as corals continued to recover from the impacts of prior storms including tropical cyclones Debbie, Owen, Penny and Trevor between 2017 and 2019, and above average sea temperatures in 2016, 2017 and 2020.  
+
+Coral condition was moderate in the northern regions and poor in the southern regions. Scores for the Wet Tropics have remained stable since 2016 (though sub-region variations exist), while the scores continue to decline in the Burdekin region, likely driven by increases in macroalgae. Marginal improvement in the Mackay Whitsunday region was detected, mostly driven by high densities of juvenile corals at some reefs. Fitzroy region corals are being hindered from recovery at some reefs by high cover of macroalgae and low densities of juvenile corals.  
+
+Seagrass indicators were changed for reporting in 2021, with nutrient status being removed, abundance remaining and reproductive effort being calculated as part of a new resilience indicator, backdated to 2005. This change was driven by scientific concern about the Great Barrier Reef’s seagrass meadow resilience, and the need to develop a more representative metric for management purposes. 
+
+In 2022, overall inshore seagrass condition improved to moderate, reversing the Reef-wide decline reported since 2016-17. The seagrass resilience indicator was in moderate condition. Abundance indicators improved in 2021. There were signs of recovery detected in the Cape York, Wet Tropics and Burdekin regions, which all improved to moderate condition, driven by improvements in seagrass abundance. The Mackay Whitsunday region seagrass also improved to moderate condition, however seagrass abundance remained in poor condition. The southern regions of Fitzroy and Burnett Mary remained in poor condition overall, with a deterioration in seagrass abundance to very poor. 
+
+Overall inshore water quality condition declined from good to moderate in the Great Barrier Reef, with rainfall and river discharge close to or above the long-term median. This result is a decrease in water quality from the 2020 report card. 
+
+The water quality scores for the Cape York and Wet Tropics regions remained moderate in 2022. The Burdekin and Fitzroy regions declined to moderate condition in 2022 from the previous report card. The Mackay Whitsunday region saw a decline to poor condition since last reported, driven by a decline in water clarity. The Burnett Mary region had the largest decline from good to poor condition, with the region affected by the extreme late rainfall events in May 2022, and annual river discharge nine times greater than the long-term median.  
+
+More information and links to reports, monitoring and modelling partner sites are available from the Reef Authority’s Marine Monitoring Program website  the Seagrass-Watch website and from the eReefs marine water quality modelling website.",https://reportcard.reefplan.qld.gov.au/home?report=condition&year=63feba8962a7eebd85fb06ac&measure=IMC&area=GBR
+CY,1,Cape York region,2022,C,Moderate,3,Moderate,3,4298255,1449,16415,"The overall condition of the inshore marine environment improved to moderate. 
+
+Tropical Cyclone Lucas moved across the Cape York peninsula as a tropical low in early January 2021, bringing heavy rain to the area. River discharge was from 1.5 to 2 times greater than the long-term median with floods detected in the Normanby River and Endeavour area. There were also several small to moderate discharge events late in the wet season.  
+
+Inshore coral is not monitored in this region by the Marine Monitoring Program. 
+
+Inshore seagrass meadow condition was monitored in six locations and condition improved from poor to moderate. However, the 2021-22 score is the fourth lowest recorded over the past decade and is slightly below the long-term average. Despite an initial increase in abundance, up to 50% losses occurred in some habitats from 2021 to 2022. Resilience was reported for the first time and graded as moderate condition, though the lack of reproductive structures hinders replenishment of seed banks and weakens the capacity of meadows to recover from future disturbances.  
+
+Inshore water quality remained in moderate condition, with the Secchi depth score remaining poor while Chlorophyll a  remains good.",https://reportcard.reefplan.qld.gov.au/home?report=condition&year=63feba8962a7eebd85fb06ac&measure=IMC&area=CY
+WT,2,Wet Tropics region,2022,C,Moderate,3,Moderate,3,2169280,2063,23487,"The overall condition of the inshore marine environment remained moderate. 
+
+While no extreme climatic events occurred in the region during this reporting period, river discharge was above the long-term median with three flood events influencing the Wet Tropics during the 2020-21 wet season.   
+
+Sea-surface temperatures were above average and thermal stress was considered a likely impact in 2021-22. 
+
+Inshore coral condition was surveyed at 12 reefs in the region and remained moderate overall. Coral cover increased at most reefs while macroalgae cover remained moderate in most locations.  
+
+Inshore seagrass meadow condition was monitored in six locations and condition improved from poor to moderate. Seagrass condition varied across the region, with meadows in the north of the region improving from poor to moderate. Meadows in the south of the region remained in poor condition.   
+
+Inshore water quality remained in moderate condition, with Secchi depth remaining in poor condition and a decline in Chlorophyll a from good to moderate.",https://reportcard.reefplan.qld.gov.au/home?report=condition&year=63feba8962a7eebd85fb06ac&measure=IMC&area=WT
+Bu,3,Burdekin region,2022,C,Moderate,3,Moderate,3,14059322,702,12721,"The overall condition of the inshore marine environment remained moderate. 
+
+The Burdekin region experienced its highest thermal stress in the 2021–22 monitoring year, with sea-surface temperatures well above average. Inshore areas around Townsville had the highest heat stress accumulation, with some areas reaching temperatures close to three degrees Celsius above average and accumulating up to 140-degree heating days. 
+
+Inshore coral condition was surveyed at 15 sites on eight reefs. Coral condition remained moderate. These coral communities continue to recover from a low point following the impact of Severe Tropical Cyclone Yasi in 2011. A slight decline in condition, though still within moderate range, was attributed to the legacy of the 2020 thermal stress event and to low juvenile coral and high macroalgae cover.  
+
+Inshore seagrass meadow condition was monitored at four locations and condition improved from poor to moderate. Seagrass meadows have shown high resilience particularly through their capacity to recover from disturbances such as the large flood event in 2019 and strong winds that dominate the region. 
+
+Inshore water quality declined from good to moderate condition. Annual discharge in 2021-22 from the combined Burdekin and Haughton basins was approximately 1.2 times greater than the long-term median. Two Haughton basin flood events occurred in April and May 2022, after a very low discharge year in 2020-21.",https://reportcard.reefplan.qld.gov.au/home?report=condition&year=63feba8962a7eebd85fb06ac&measure=IMC&area=Bu
+MW,4,Mackay Whitsunday region,2022,D,Poor,2,Poor,2,900475,1550,6197,"The overall condition of the inshore marine environment remained poor. 
+
+Sea-surface temperatures were above average, particularly in the inshore Mackay-Whitsunday region where temperatures were up to three degrees Celsius above average in January 2022.  
+
+No major storm events or cyclone activity occurred during this reporting period.  Annual river discharge was the lowest recorded over the past decade, about half of the long-term median value, with no major floods influencing this region during these two years. While regions north and south experienced coral bleaching, no major bleaching or coral loss was detected, though if less severe bleaching had occurred it's likely corals had recovered their pigment when surveyed.
+
+Inshore coral condition remained poor, with a continued decline recorded and macroalgal cover increasing at most sites. However, there are signs of recovery since the impacts of Severe Tropical Cyclone Debbie in 2017 with the juvenile coral indicator now in the moderate range. Persistent high turbidity resulting in limited light availability and accumulation of fine sediment hindered coral growth, particularly at the five metre sites. 
+
+Inshore seagrass meadow condition was monitored at 10 locations and condition improved from poor to moderate. However, abundance remained poor over the two years of monitoring. Resilience was reported for the first time and was graded moderate. Condition can be highly variable in the region though, with some sites showing signs of recovery following years of decline, particularly since Severe Tropical Cyclone Debbie in 2017. 
+
+Inshore water quality condition declined from moderate to poor, despite low river discharge and was influenced by a decline in Secchi depth scores.",https://reportcard.reefplan.qld.gov.au/home?report=condition&year=63feba8962a7eebd85fb06ac&measure=IMC&area=MW
+FZ,5,Fitzroy region,2022,D,Poor,2,Moderate,3,15549409,716,9226,"The overall condition of the inshore marine environment declined to poor.   
+
+Sea-surface temperature was above average, but heat stress was not as severe as in the northern parts of the inshore Reef.  
+
+Inshore coral condition remained poor and has declined since 2020 when corals were severely bleached by high water temperatures early in the year. The decline in condition through to 2021 was attributed to the long-term impact of this event. 
+
+Inshore seagrass meadow condition is monitored at six sites and condition remained poor. A decline in abundance at all locations and habitats reduced abundance from poor into the very poor. However, the proportion of foundational species was the highest on record, which aids recovery of seagrass meadows. Across the region, seagrass meadows continue to remain in the early stages of recovery from the recent climate-related impacts such as the thermal stress event that affected the region in 2020.  
+
+Inshore water quality condition declined from good to moderate with above average river discharge and exposure to turbid water.",https://reportcard.reefplan.qld.gov.au/home?report=condition&year=63feba8962a7eebd85fb06ac&measure=IMC&area=FZ
+BM,6,Burnett Mary region,2022,D,Poor,2,Poor,2,5301479,875,5455,"The overall condition of the inshore marine environment declined to poor. 
+
+Sea surface temperatures were slightly warmer than the long-term average, while intertidal temperatures were higher than the previous monitoring period.  
+
+Inshore coral is not monitored in this region by the Marine Monitoring Program. 
+
+Inshore seagrass meadow condition was monitored at three sites and remained poor. Seagrass abundance declined to a very poor condition for the first time since 2013–14,  affecting both estuarine and coastal habitats. Resilience was reported for the first time and was graded as poor.   
+
+Inshore water quality declined from good to poor condition due to extreme weather events. The region had elevated late rainfall in May 2022, resulting in average river discharge nine times greater than the long-term median. Secchi depth and Chlorophyll a grades declined from good to poor and moderate respectively.",https://reportcard.reefplan.qld.gov.au/home?report=condition&year=63feba8962a7eebd85fb06ac&measure=IMC&area=BM

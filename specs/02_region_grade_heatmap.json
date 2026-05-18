@@ -1,0 +1,179 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "autosize": {
+    "type": "fit",
+    "contains": "padding"
+  },
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "domain": false,
+      "tickColor": "#9db3bb",
+      "gridColor": "#d7e0e3",
+      "labelColor": "#23404a",
+      "titleColor": "#23404a",
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 600
+    },
+    "legend": {
+      "labelColor": "#23404a",
+      "titleColor": "#23404a",
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans",
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    },
+    "header": {
+      "labelColor": "#23404a",
+      "titleColor": "#23404a",
+      "labelFont": "Public Sans",
+      "titleFont": "Public Sans"
+    },
+    "style": {
+      "guide-label": {
+        "font": "Public Sans"
+      },
+      "guide-title": {
+        "font": "Public Sans"
+      }
+    }
+  },
+  "width": "container",
+  "height": 280,
+  "data": {
+    "url": "./data/reportcard_targets_2021_2022.csv"
+  },
+  "transform": [
+    {
+      "filter": "datum.regionCode !== 'GBR'"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "rect",
+        "cornerRadius": 8
+      },
+      "encoding": {
+        "x": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": {
+            "field": "measureOrder",
+            "order": "ascending"
+          },
+          "title": null,
+          "axis": {
+            "labelAngle": 0,
+            "labelPadding": 10,
+            "labelLimit": 120,
+            "labelFontSize": 11
+          }
+        },
+        "y": {
+          "field": "region",
+          "type": "ordinal",
+          "sort": [
+            "Cape York region",
+            "Wet Tropics region",
+            "Burdekin region",
+            "Mackay Whitsunday region",
+            "Fitzroy region",
+            "Burnett Mary region"
+          ],
+          "title": null
+        },
+        "color": {
+          "field": "gradeRank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [
+              0,
+              1,
+              2,
+              3,
+              4,
+              5
+            ],
+            "range": [
+              "#d7d6d2",
+              "#a83f2f",
+              "#d97736",
+              "#e3bd61",
+              "#5db39e",
+              "#17756a"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {
+            "field": "region",
+            "title": "Region"
+          },
+          {
+            "field": "measure",
+            "title": "Measure"
+          },
+          {
+            "field": "gradeLabel",
+            "title": "Grade"
+          },
+          {
+            "field": "latestValue",
+            "title": "Latest result",
+            "format": ".1f"
+          },
+          {
+            "field": "overallProgress",
+            "title": "Progress to date",
+            "format": ".1f"
+          },
+          {
+            "field": "statusNote",
+            "title": "Note"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#16313a"
+      },
+      "encoding": {
+        "x": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": {
+            "field": "measureOrder",
+            "order": "ascending"
+          }
+        },
+        "y": {
+          "field": "region",
+          "type": "ordinal",
+          "sort": [
+            "Cape York region",
+            "Wet Tropics region",
+            "Burdekin region",
+            "Mackay Whitsunday region",
+            "Fitzroy region",
+            "Burnett Mary region"
+          ]
+        },
+        "text": {
+          "field": "gradeLetter"
+        }
+      }
+    }
+  ]
+}
