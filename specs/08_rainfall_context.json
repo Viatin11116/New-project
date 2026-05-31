@@ -1,0 +1,180 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    }
+  },
+  "data": { "url": "./data/reportcard_condition_2022.csv" },
+  "transform": [
+    { "filter": "datum.regionCode !== 'GBR'" },
+    {
+      "calculate": "toNumber(datum.dischargeGl) / (toNumber(datum.areaHectares) / 1000)",
+      "as": "dischargePer1000ha"
+    },
+    {
+      "calculate": "datum.region === 'Cape York region' ? 'Cape York' : datum.region === 'Wet Tropics region' ? 'Wet Tropics' : datum.region === 'Burdekin region' ? 'Burdekin' : datum.region === 'Mackay Whitsunday region' ? 'Mackay' : datum.region === 'Fitzroy region' ? 'Fitzroy' : 'Burnett Mary'",
+      "as": "regionShort"
+    }
+  ],
+  "layer": [
+    {
+      "transform": [
+        {
+          "aggregate": [{ "op": "mean", "field": "rainfallMm", "as": "meanRainfall" }]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeDash": [5, 5],
+        "strokeWidth": 1.6,
+        "color": "#9ab8b5"
+      },
+      "encoding": { "x": { "field": "meanRainfall", "type": "quantitative" } }
+    },
+    {
+      "transform": [
+        {
+          "aggregate": [
+            { "op": "mean", "field": "dischargePer1000ha", "as": "meanDischargeDensity" }
+          ]
+        }
+      ],
+      "mark": {
+        "type": "rule",
+        "strokeDash": [5, 5],
+        "strokeWidth": 1.6,
+        "color": "#9ab8b5"
+      },
+      "encoding": { "y": { "field": "meanDischargeDensity", "type": "quantitative" } }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 220,
+        "stroke": "#fffaf2",
+        "strokeWidth": 1.8
+      },
+      "encoding": {
+        "x": {
+          "field": "rainfallMm",
+          "type": "quantitative",
+          "title": "Annual rainfall (mm)"
+        },
+        "y": {
+          "field": "dischargePer1000ha",
+          "type": "quantitative",
+          "title": "River discharge per 1000 ha (GL)"
+        },
+        "color": {
+          "field": "waterQualityRank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [2, 3],
+            "range": ["#b85a46", "#d8c073"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "region", "title": "Region" },
+          { "field": "waterQualityCondition", "title": "Water-quality condition" },
+          { "field": "rainfallMm", "title": "Rainfall (mm)" },
+          { "field": "dischargeGl", "title": "River discharge (GL)" },
+          {
+            "field": "dischargePer1000ha",
+            "title": "River discharge per 1000 ha (GL)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "font": "Trebuchet MS",
+        "fontSize": 11,
+        "fontWeight": 800,
+        "color": "#294246"
+      },
+      "transform": [
+        {
+          "filter": "datum.regionShort !== 'Burdekin' && datum.regionShort !== 'Fitzroy' && datum.regionShort !== 'Burnett Mary'"
+        }
+      ],
+      "encoding": {
+        "x": { "field": "rainfallMm", "type": "quantitative" },
+        "y": { "field": "dischargePer1000ha", "type": "quantitative" },
+        "text": { "field": "regionShort" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dx": -10,
+        "dy": -6,
+        "align": "right",
+        "baseline": "middle",
+        "font": "Trebuchet MS",
+        "fontSize": 10,
+        "fontWeight": 800,
+        "color": "#294246"
+      },
+      "transform": [{ "filter": "datum.regionShort === 'Burdekin'" }],
+      "encoding": {
+        "x": { "field": "rainfallMm", "type": "quantitative" },
+        "y": { "field": "dischargePer1000ha", "type": "quantitative" },
+        "text": { "field": "regionShort" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dx": 10,
+        "dy": -2,
+        "align": "left",
+        "baseline": "middle",
+        "font": "Trebuchet MS",
+        "fontSize": 10,
+        "fontWeight": 800,
+        "color": "#294246"
+      },
+      "transform": [{ "filter": "datum.regionShort === 'Fitzroy'" }],
+      "encoding": {
+        "x": { "field": "rainfallMm", "type": "quantitative" },
+        "y": { "field": "dischargePer1000ha", "type": "quantitative" },
+        "text": { "field": "regionShort" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -12,
+        "align": "center",
+        "baseline": "bottom",
+        "font": "Trebuchet MS",
+        "fontSize": 10,
+        "fontWeight": 800,
+        "color": "#294246"
+      },
+      "transform": [{ "filter": "datum.regionShort === 'Burnett Mary'" }],
+      "encoding": {
+        "x": { "field": "rainfallMm", "type": "quantitative" },
+        "y": { "field": "dischargePer1000ha", "type": "quantitative" },
+        "text": { "field": "regionShort" }
+      }
+    }
+  ]
+}

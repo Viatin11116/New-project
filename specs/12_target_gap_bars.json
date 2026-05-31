@@ -1,0 +1,138 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    }
+  },
+  "data": { "url": "./data/reportcard_targets_2021_2022.csv" },
+  "transform": [
+    { "filter": "datum.regionCode === 'GBR'" },
+    {
+      "calculate": "toNumber(datum.overallProgress)",
+      "as": "currentValue"
+    },
+    {
+      "calculate": "toNumber(datum.targetValue)",
+      "as": "targetNumeric"
+    },
+    {
+      "calculate": "datum.targetNumeric > 0 ? (datum.currentValue / datum.targetNumeric) * 100 : 0",
+      "as": "targetCompletionPct"
+    },
+    {
+      "calculate": "100",
+      "as": "fullTarget"
+    },
+    {
+      "calculate": "floor(datum.targetCompletionPct + 0.5) + '%'",
+      "as": "progressLabel"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "bar",
+        "size": 28,
+        "cornerRadiusEnd": 12,
+        "color": "#e8deca"
+      },
+      "encoding": {
+        "y": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": { "field": "measureOrder", "order": "ascending" },
+          "title": null
+        },
+        "x": {
+          "field": "fullTarget",
+          "type": "quantitative",
+          "scale": { "domain": [0, 100] },
+          "axis": { "title": "Target completion (%)", "tickCount": 6 }
+        }
+      }
+    },
+    {
+      "mark": { "type": "bar", "size": 16, "cornerRadiusEnd": 10 },
+      "encoding": {
+        "y": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": { "field": "measureOrder", "order": "ascending" },
+          "title": null
+        },
+        "x": { "field": "targetCompletionPct", "type": "quantitative" },
+        "color": {
+          "field": "shortLabel",
+          "type": "nominal",
+          "scale": {
+            "domain": ["DIN", "Sediment", "Particulate N", "Particulate P", "Pesticides"],
+            "range": ["#0f5d66", "#c97b54", "#8b9f56", "#d8b26c", "#4b7f99"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "measure", "title": "Measure" },
+          { "field": "unit", "title": "Metric type" },
+          { "field": "currentValue", "title": "Current official result (%)", "format": ".1f" },
+          { "field": "targetNumeric", "title": "Official target (%)", "format": ".0f" },
+          { "field": "targetCompletionPct", "title": "Target completion (%)", "format": ".1f" },
+          { "field": "gradeLabel", "title": "Grade" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "baseline": "middle",
+        "font": "Trebuchet MS",
+        "fontSize": 11,
+        "color": "#294246"
+      },
+      "transform": [{ "filter": "datum.targetCompletionPct <= 90" }],
+      "encoding": {
+        "y": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": { "field": "measureOrder", "order": "ascending" }
+        },
+        "x": { "field": "targetCompletionPct", "type": "quantitative" },
+        "text": { "field": "progressLabel" }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -8,
+        "baseline": "middle",
+        "font": "Trebuchet MS",
+        "fontSize": 11,
+        "color": "#fffaf2"
+      },
+      "transform": [{ "filter": "datum.targetCompletionPct > 90" }],
+      "encoding": {
+        "y": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": { "field": "measureOrder", "order": "ascending" }
+        },
+        "x": { "field": "targetCompletionPct", "type": "quantitative" },
+        "text": { "field": "progressLabel" }
+      }
+    }
+  ]
+}

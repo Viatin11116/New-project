@@ -26,21 +26,21 @@
   },
   "data": { "url": "./data/aims_samples_2024_2025.csv" },
   "transform": [
-    { "filter": "isValid(datum.suspendedSolids) && isValid(datum.secchiDepthM)" },
-    { "filter": "toNumber(datum.suspendedSolids) <= 220" }
+    {
+      "filter": "isValid(datum.dissolvedInorganicNitrogen) && isValid(datum.chlorophyllA)"
+    }
   ],
   "mark": { "type": "point", "filled": true, "opacity": 0.45, "size": 58 },
   "encoding": {
     "x": {
-      "field": "suspendedSolids",
+      "field": "dissolvedInorganicNitrogen",
       "type": "quantitative",
-      "title": "Suspended solids (mg/L)",
-      "scale": { "type": "sqrt", "domain": [0, 220] }
+      "title": "Dissolved inorganic nitrogen (mg/L)"
     },
     "y": {
-      "field": "secchiDepthM",
+      "field": "chlorophyllA",
       "type": "quantitative",
-      "title": "Secchi depth (m)"
+      "title": "Chlorophyll a (ug/L)"
     },
     "color": {
       "field": "season",
@@ -56,8 +56,12 @@
       { "field": "region", "title": "Region" },
       { "field": "locationName", "title": "Location" },
       { "field": "season", "title": "Season" },
-      { "field": "suspendedSolids", "title": "Suspended solids (mg/L)", "format": ".2f" },
-      { "field": "secchiDepthM", "title": "Secchi depth (m)", "format": ".2f" }
+      {
+        "field": "dissolvedInorganicNitrogen",
+        "title": "Dissolved inorganic nitrogen (mg/L)",
+        "format": ".3f"
+      },
+      { "field": "chlorophyllA", "title": "Chlorophyll a (ug/L)", "format": ".3f" }
     ]
   }
 }

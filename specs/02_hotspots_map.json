@@ -1,0 +1,156 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "autosize": { "type": "fit", "contains": "padding" },
+  "config": {
+    "view": { "stroke": null },
+    "legend": {
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  },
+  "padding": { "top": 4, "left": 4, "right": 4, "bottom": 4 },
+  "projection": {
+    "type": "mercator",
+    "center": [147.4, -18.9],
+    "scale": 2500
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "./data/world-110m.json",
+        "format": { "type": "topojson", "feature": "countries" }
+      },
+      "transform": [{ "filter": "datum.id == 36" }],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#f4ecde",
+        "stroke": "#7f9796",
+        "strokeWidth": 1.4
+      }
+    },
+    {
+      "data": { "url": "./data/aims_samples_2024_2025.csv" },
+      "transform": [
+        { "filter": "isValid(datum.latitude) && isValid(datum.longitude)" },
+        {
+          "aggregate": [
+            { "op": "mean", "field": "longitude", "as": "siteLongitude" },
+            { "op": "mean", "field": "latitude", "as": "siteLatitude" },
+            { "op": "count", "as": "sampleCount" },
+            { "op": "median", "field": "suspendedSolids", "as": "medianSS" }
+          ],
+          "groupby": ["region", "shortName", "locationName"]
+        },
+        {
+          "calculate": "datum.medianSS <= 0.7063 ? '<=P25' : datum.medianSS <= 1.2512 ? 'P25-P50' : datum.medianSS <= 2.9325 ? 'P50-P75' : datum.medianSS <= 9.92 ? 'P75-P90' : '>P90'",
+          "as": "ssBand"
+        },
+        {
+          "calculate": "round(datum.siteLatitude * 200) / 200",
+          "as": "latBucket"
+        },
+        {
+          "calculate": "round(datum.siteLongitude * 200) / 200",
+          "as": "lonBucket"
+        },
+        {
+          "joinaggregate": [{ "op": "count", "as": "clusterCount" }],
+          "groupby": ["latBucket", "lonBucket"]
+        },
+        {
+          "window": [{ "op": "row_number", "as": "clusterRank" }],
+          "groupby": ["latBucket", "lonBucket"],
+          "sort": [
+            { "field": "region", "order": "ascending" },
+            { "field": "shortName", "order": "ascending" }
+          ]
+        },
+        {
+          "calculate": "datum.clusterCount <= 1 ? 0 : 6.283185307179586 * (datum.clusterRank - 1) / datum.clusterCount",
+          "as": "clusterAngle"
+        },
+        {
+          "calculate": "datum.clusterCount <= 1 ? datum.siteLongitude : datum.siteLongitude + 0.035 * cos(datum.clusterAngle)",
+          "as": "plotLongitude"
+        },
+        {
+          "calculate": "datum.clusterCount <= 1 ? datum.siteLatitude : datum.siteLatitude + 0.025 * sin(datum.clusterAngle)",
+          "as": "plotLatitude"
+        }
+      ],
+      "mark": {
+        "type": "circle",
+        "size": 90,
+        "opacity": 0.8,
+        "stroke": "#fffaf2",
+        "strokeWidth": 1.1
+      },
+      "encoding": {
+        "longitude": { "field": "plotLongitude", "type": "quantitative" },
+        "latitude": { "field": "plotLatitude", "type": "quantitative" },
+        "color": {
+          "field": "ssBand",
+          "type": "nominal",
+          "scale": {
+            "domain": ["<=P25", "P25-P50", "P50-P75", "P75-P90", ">P90"],
+            "range": ["#2f9e44", "#8bcf5a", "#f2cc4d", "#f08c2e", "#c92a2a"]
+          },
+          "legend": {
+            "title": "Suspended solids percentile band",
+            "orient": "right"
+          }
+        },
+        "tooltip": [
+          { "field": "shortName", "title": "Site code" },
+          { "field": "locationName", "title": "Location" },
+          { "field": "region", "title": "Region" },
+          { "field": "sampleCount", "title": "Samples", "format": "," },
+          { "field": "medianSS", "title": "Median suspended solids (mg/L)", "format": ".2f" },
+          { "field": "ssBand", "title": "Percentile band" }
+        ]
+      }
+    },
+    {
+      "data": { "url": "./data/aims_samples_2024_2025.csv" },
+      "transform": [
+        { "filter": "isValid(datum.latitude) && isValid(datum.longitude)" },
+        {
+          "aggregate": [
+            { "op": "mean", "field": "longitude", "as": "regionLongitude" },
+            { "op": "mean", "field": "latitude", "as": "regionLatitude" }
+          ],
+          "groupby": ["region"]
+        },
+        {
+          "calculate": "datum.region === 'Cape York region' ? 'CY' : datum.region === 'Wet Tropics region' ? 'WT' : datum.region === 'Burdekin region' ? 'BU' : datum.region === 'Mackay Whitsunday region' ? 'MW' : 'FZ'",
+          "as": "regionCode"
+        },
+        {
+          "calculate": "datum.region === 'Cape York region' ? datum.regionLongitude + 0.44 : datum.region === 'Wet Tropics region' ? datum.regionLongitude + 0.48 : datum.region === 'Burdekin region' ? datum.regionLongitude + 0.52 : datum.region === 'Mackay Whitsunday region' ? datum.regionLongitude + 0.46 : datum.regionLongitude + 0.34",
+          "as": "labelLongitude"
+        },
+        {
+          "calculate": "datum.region === 'Cape York region' ? datum.regionLatitude + 0.16 : datum.region === 'Wet Tropics region' ? datum.regionLatitude - 0.04 : datum.region === 'Burdekin region' ? datum.regionLatitude : datum.region === 'Mackay Whitsunday region' ? datum.regionLatitude - 0.03 : datum.regionLatitude - 0.12",
+          "as": "labelLatitude"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "font": "Trebuchet MS",
+        "fontSize": 12,
+        "fontWeight": 800,
+        "color": "#173439"
+      },
+      "encoding": {
+        "longitude": { "field": "labelLongitude", "type": "quantitative" },
+        "latitude": { "field": "labelLatitude", "type": "quantitative" },
+        "text": { "field": "regionCode" }
+      }
+    }
+  ]
+}

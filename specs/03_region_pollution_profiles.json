@@ -1,0 +1,248 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "autosize": { "type": "fit", "contains": "padding" },
+  "spacing": 22,
+  "resolve": {
+    "scale": {
+      "x": "independent",
+      "y": "independent"
+    }
+  },
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    }
+  },
+  "vconcat": [
+    {
+      "width": 420,
+      "height": 165,
+      "title": {
+        "text": "DIN",
+        "subtitle": "Dissolved inorganic nitrogen (mg/L)",
+        "anchor": "start",
+        "color": "#294246",
+        "font": "Trebuchet MS",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "subtitleColor": "#567377",
+        "subtitleFont": "Trebuchet MS",
+        "subtitleFontSize": 10,
+        "offset": 10
+      },
+      "data": { "url": "./data/aims_samples_2024_2025.csv" },
+      "transform": [
+        { "filter": "isValid(datum.dissolvedInorganicNitrogen)" },
+        {
+          "aggregate": [
+            {
+              "op": "median",
+              "field": "dissolvedInorganicNitrogen",
+              "as": "medianValue"
+            }
+          ],
+          "groupby": ["region"]
+        },
+        {
+          "calculate": "datum.region === 'Cape York region' ? 'Cape York' : datum.region === 'Wet Tropics region' ? 'Wet Tropics' : datum.region === 'Burdekin region' ? 'Burdekin' : datum.region === 'Mackay Whitsunday region' ? 'Mackay Whitsunday' : 'Fitzroy'",
+          "as": "regionShort"
+        }
+      ],
+      "layer": [
+        {
+          "mark": { "type": "bar", "cornerRadiusEnd": 10, "color": "#1f6f8b" },
+          "encoding": {
+            "y": {
+              "field": "regionShort",
+              "type": "ordinal",
+              "sort": { "field": "medianValue", "order": "descending" },
+              "title": null
+            },
+            "x": { "field": "medianValue", "type": "quantitative", "title": "DIN (mg/L)" },
+            "tooltip": [
+              { "field": "region", "title": "Region" },
+              { "field": "medianValue", "title": "Median DIN (mg/L)", "format": ".3f" }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "baseline": "middle",
+            "font": "Trebuchet MS",
+            "fontSize": 10,
+            "color": "#294246"
+          },
+          "encoding": {
+            "y": {
+              "field": "regionShort",
+              "type": "ordinal",
+              "sort": { "field": "medianValue", "order": "descending" }
+            },
+            "x": { "field": "medianValue", "type": "quantitative" },
+            "text": { "field": "medianValue", "format": ".2f" }
+          }
+        }
+      ]
+    },
+    {
+      "width": 420,
+      "height": 165,
+      "title": {
+        "text": "Suspended solids",
+        "subtitle": "Median concentration (mg/L)",
+        "anchor": "start",
+        "color": "#294246",
+        "font": "Trebuchet MS",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "subtitleColor": "#567377",
+        "subtitleFont": "Trebuchet MS",
+        "subtitleFontSize": 10,
+        "offset": 10
+      },
+      "data": { "url": "./data/aims_samples_2024_2025.csv" },
+      "transform": [
+        { "filter": "isValid(datum.suspendedSolids)" },
+        {
+          "aggregate": [{ "op": "median", "field": "suspendedSolids", "as": "medianValue" }],
+          "groupby": ["region"]
+        },
+        {
+          "calculate": "datum.region === 'Cape York region' ? 'Cape York' : datum.region === 'Wet Tropics region' ? 'Wet Tropics' : datum.region === 'Burdekin region' ? 'Burdekin' : datum.region === 'Mackay Whitsunday region' ? 'Mackay Whitsunday' : 'Fitzroy'",
+          "as": "regionShort"
+        }
+      ],
+      "layer": [
+        {
+          "mark": { "type": "bar", "cornerRadiusEnd": 10, "color": "#c9741f" },
+          "encoding": {
+            "y": {
+              "field": "regionShort",
+              "type": "ordinal",
+              "sort": { "field": "medianValue", "order": "descending" },
+              "title": null
+            },
+            "x": {
+              "field": "medianValue",
+              "type": "quantitative",
+              "title": "Suspended solids (mg/L)"
+            },
+            "tooltip": [
+              { "field": "region", "title": "Region" },
+              {
+                "field": "medianValue",
+                "title": "Median suspended solids (mg/L)",
+                "format": ".3f"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "baseline": "middle",
+            "font": "Trebuchet MS",
+            "fontSize": 10,
+            "color": "#294246"
+          },
+          "encoding": {
+            "y": {
+              "field": "regionShort",
+              "type": "ordinal",
+              "sort": { "field": "medianValue", "order": "descending" }
+            },
+            "x": { "field": "medianValue", "type": "quantitative" },
+            "text": { "field": "medianValue", "format": ".2f" }
+          }
+        }
+      ]
+    },
+    {
+      "width": 420,
+      "height": 165,
+      "title": {
+        "text": "Chlorophyll a",
+        "subtitle": "Median concentration (ug/L)",
+        "anchor": "start",
+        "color": "#294246",
+        "font": "Trebuchet MS",
+        "fontSize": 13,
+        "fontWeight": 700,
+        "subtitleColor": "#567377",
+        "subtitleFont": "Trebuchet MS",
+        "subtitleFontSize": 10,
+        "offset": 10
+      },
+      "data": { "url": "./data/aims_samples_2024_2025.csv" },
+      "transform": [
+        { "filter": "isValid(datum.chlorophyllA)" },
+        {
+          "aggregate": [{ "op": "median", "field": "chlorophyllA", "as": "medianValue" }],
+          "groupby": ["region"]
+        },
+        {
+          "calculate": "datum.region === 'Cape York region' ? 'Cape York' : datum.region === 'Wet Tropics region' ? 'Wet Tropics' : datum.region === 'Burdekin region' ? 'Burdekin' : datum.region === 'Mackay Whitsunday region' ? 'Mackay Whitsunday' : 'Fitzroy'",
+          "as": "regionShort"
+        }
+      ],
+      "layer": [
+        {
+          "mark": { "type": "bar", "cornerRadiusEnd": 10, "color": "#5b8c51" },
+          "encoding": {
+            "y": {
+              "field": "regionShort",
+              "type": "ordinal",
+              "sort": { "field": "medianValue", "order": "descending" },
+              "title": null
+            },
+            "x": {
+              "field": "medianValue",
+              "type": "quantitative",
+              "title": "Chlorophyll a (ug/L)"
+            },
+            "tooltip": [
+              { "field": "region", "title": "Region" },
+              { "field": "medianValue", "title": "Median chlorophyll a (ug/L)", "format": ".3f" }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "left",
+            "dx": 6,
+            "baseline": "middle",
+            "font": "Trebuchet MS",
+            "fontSize": 10,
+            "color": "#294246"
+          },
+          "encoding": {
+            "y": {
+              "field": "regionShort",
+              "type": "ordinal",
+              "sort": { "field": "medianValue", "order": "descending" }
+            },
+            "x": { "field": "medianValue", "type": "quantitative" },
+            "text": { "field": "medianValue", "format": ".2f" }
+          }
+        }
+      ]
+    }
+  ]
+}

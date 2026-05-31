@@ -1,0 +1,119 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "center": true,
+  "autosize": { "type": "fit", "contains": "padding" },
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    },
+    "header": {
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    }
+  },
+  "data": { "url": "./data/aims_samples_2024_2025.csv" },
+  "transform": [
+    {
+      "fold": ["dissolvedInorganicNitrogen", "salinity"],
+      "as": ["metric", "value"]
+    },
+    { "filter": "isValid(datum.value)" },
+    {
+      "calculate": "datum.metric === 'dissolvedInorganicNitrogen' ? 'DIN (mg/L)' : 'Salinity (PSU)'",
+      "as": "metricLabel"
+    },
+    {
+      "calculate": "datum.metric === 'dissolvedInorganicNitrogen' ? 1 : 2",
+      "as": "metricOrder"
+    },
+    {
+      "aggregate": [{ "op": "median", "field": "value", "as": "medianValue" }],
+      "groupby": ["month", "monthLabel", "metricLabel", "metricOrder"]
+    }
+  ],
+  "facet": {
+    "row": {
+      "field": "metricLabel",
+      "sort": { "field": "metricOrder", "order": "ascending" },
+      "title": null,
+      "header": {
+        "labelOrient": "top",
+        "labelAngle": 0,
+        "labelAnchor": "start",
+        "labelFontWeight": 700,
+        "labelPadding": 10
+      }
+    }
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "spec": {
+    "width": 500,
+    "height": 112,
+    "padding": { "left": 10, "right": 18, "top": 6, "bottom": 0 },
+    "layer": [
+      {
+        "mark": {
+          "type": "line",
+          "strokeWidth": 3.2,
+          "color": "#0f5d66",
+          "interpolate": "monotone"
+        },
+        "encoding": {
+          "x": {
+            "field": "month",
+            "type": "quantitative",
+            "scale": { "domain": [1, 12] },
+            "axis": {
+              "title": null,
+              "values": [1, 2, 3, 4, 5, 6, 7, 10, 11, 12],
+              "labelExpr": "datum.value===1 ? 'Jan' : datum.value===2 ? 'Feb' : datum.value===3 ? 'Mar' : datum.value===4 ? 'Apr' : datum.value===5 ? 'May' : datum.value===6 ? 'Jun' : datum.value===7 ? 'Jul' : datum.value===10 ? 'Oct' : datum.value===11 ? 'Nov' : 'Dec'"
+            }
+          },
+          "y": {
+            "field": "medianValue",
+            "type": "quantitative",
+            "axis": { "title": null, "tickCount": 4 }
+          }
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "filled": true,
+          "size": 84,
+          "color": "#c97b54",
+          "stroke": "#fffaf2",
+          "strokeWidth": 1.1
+        },
+        "encoding": {
+          "x": { "field": "month", "type": "quantitative" },
+          "y": { "field": "medianValue", "type": "quantitative" },
+          "tooltip": [
+            { "field": "metricLabel", "title": "Metric" },
+            { "field": "monthLabel", "title": "Month" },
+            { "field": "medianValue", "title": "Median", "format": ".3f" }
+          ]
+        }
+      }
+    ]
+  }
+}

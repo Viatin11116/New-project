@@ -1,0 +1,100 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    }
+  },
+  "data": { "url": "./data/reportcard_targets_2021_2022.csv" },
+  "transform": [
+    { "filter": "datum.regionCode !== 'GBR'" },
+    {
+      "calculate": "datum.region === 'Cape York region' ? 'Cape York' : datum.region === 'Wet Tropics region' ? 'Wet Tropics' : datum.region === 'Burdekin region' ? 'Burdekin' : datum.region === 'Mackay Whitsunday region' ? 'Mackay Whitsunday' : datum.region === 'Fitzroy region' ? 'Fitzroy' : 'Burnett Mary'",
+      "as": "regionShort"
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "rect", "cornerRadius": 10 },
+      "encoding": {
+        "x": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": { "field": "measureOrder", "order": "ascending" },
+          "title": null,
+          "axis": { "labelAngle": 0, "labelPadding": 10 }
+        },
+        "y": {
+          "field": "regionShort",
+          "type": "ordinal",
+          "sort": [
+            "Cape York",
+            "Wet Tropics",
+            "Burdekin",
+            "Mackay Whitsunday",
+            "Fitzroy",
+            "Burnett Mary"
+          ],
+          "title": null
+        },
+        "color": {
+          "field": "gradeRank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [0, 1, 2, 3, 4, 5],
+            "range": ["#d8ddd9", "#b85a46", "#d98d56", "#d8c073", "#8db79a", "#2f7c78"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "region", "title": "Region" },
+          { "field": "measure", "title": "Pollutant / measure" },
+          { "field": "gradeLabel", "title": "Grade" },
+          { "field": "targetValue", "title": "Target value" },
+          { "field": "overallProgress", "title": "Cumulative progress", "format": ".1f" },
+          { "field": "statusNote", "title": "Note" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Trebuchet MS",
+        "fontSize": 11,
+        "fontWeight": 800,
+        "color": "#1d3135"
+      },
+      "encoding": {
+        "x": {
+          "field": "shortLabel",
+          "type": "ordinal",
+          "sort": { "field": "measureOrder", "order": "ascending" }
+        },
+        "y": {
+          "field": "regionShort",
+          "type": "ordinal",
+          "sort": [
+            "Cape York",
+            "Wet Tropics",
+            "Burdekin",
+            "Mackay Whitsunday",
+            "Fitzroy",
+            "Burnett Mary"
+          ]
+        },
+        "text": { "field": "gradeLetter" }
+      }
+    }
+  ]
+}

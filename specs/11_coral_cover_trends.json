@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "autosize": { "type": "fit", "contains": "padding" },
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    },
+    "legend": {
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  },
+  "data": { "url": "./data/mmp_hc_sc_a_by_site.csv" },
+  "transform": [
+    { "filter": "datum.GROUP_CODE === 'Hard Coral'" },
+    {
+      "aggregate": [{ "op": "mean", "field": "COVER", "as": "meanCover" }],
+      "groupby": ["NRM_REGION", "YEAR_CODE"]
+    },
+    { "calculate": "toNumber(datum.YEAR_CODE)", "as": "year" },
+    {
+      "calculate": "datum.NRM_REGION === 'Fitzroy Basin Association' ? 'Fitzroy' : datum.NRM_REGION === 'Mackay / Whitsunday' ? 'Mackay Whitsunday' : datum.NRM_REGION",
+      "as": "regionShort"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "strokeWidth": 3,
+        "point": { "filled": true, "size": 40 }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": { "domain": [2005, 2022] },
+          "axis": {
+            "title": "Survey year",
+            "values": [2005, 2008, 2011, 2014, 2017, 2020, 2022]
+          }
+        },
+        "y": {
+          "field": "meanCover",
+          "type": "quantitative",
+          "title": "Mean hard coral cover (%)"
+        },
+        "color": {
+          "field": "regionShort",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Wet Tropics", "Burdekin", "Mackay Whitsunday", "Fitzroy"],
+            "range": ["#0f5d66", "#d8b26c", "#b85a46", "#4b7f99"]
+          },
+          "legend": { "title": null, "orient": "bottom" }
+        },
+        "tooltip": [
+          { "field": "regionShort", "title": "Region" },
+          { "field": "year", "title": "Year" },
+          { "field": "meanCover", "title": "Mean hard coral cover (%)", "format": ".2f" }
+        ]
+      }
+    },
+    {
+      "transform": [{ "filter": "datum.year === 2022" }],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 8,
+        "baseline": "middle",
+        "font": "Trebuchet MS",
+        "fontSize": 11,
+        "fontWeight": 700
+      },
+      "encoding": {
+        "x": { "field": "year", "type": "quantitative" },
+        "y": { "field": "meanCover", "type": "quantitative" },
+        "text": {
+          "field": "regionShort",
+          "type": "nominal"
+        },
+        "color": {
+          "field": "regionShort",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Wet Tropics", "Burdekin", "Mackay Whitsunday", "Fitzroy"],
+            "range": ["#0f5d66", "#d8b26c", "#b85a46", "#4b7f99"]
+          },
+          "legend": null
+        }
+      }
+    }
+  ]
+}

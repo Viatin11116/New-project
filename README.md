@@ -1,23 +1,46 @@
-# Land Runoff and Reef Water Quality
+# Tracing Great Barrier Reef Pollution
 
 Single-page Vega-Lite data story for `FIT2179 Data Visualisation 2`.
 
-## Files
+This rebuild ignores the previous page layout and reorganises the story around five questions:
 
-- `index.html`: final scrolling story page
-- `app.js`: loads and embeds all Vega-Lite specs
-- `styles.css`: layout, typography and visual styling
-- `specs/*.json`: human-readable Vega-Lite specifications
-- `data/*.csv`: compact local datasets used by the page
-- `scripts/build-inline-specs.mjs`: rebuilds the inline chart bundle used by the published page
-- `charts-inline.js`: inlined chart specs and data for static hosting
-- `description-draft.md`: draft 500-word Moodle description
+1. Where is pollution concentrated?
+2. Which pollutants matter?
+3. When does the runoff signal strengthen?
+4. What ecological consequences follow?
+5. Is management progress catching up?
 
-## Preview locally
+## Project structure
 
-Because the page fetches local `CSV` and `JSON` files, open it through a static server rather than double-clicking the file.
+- `index.html`: final single-page story
+- `styles.css`: layout, typography and figure-ground styling
+- `app.js`: loads each Vega-Lite spec JSON and embeds it into the page
+- `specs/*.json`: one human-readable Vega-Lite JSON file per chart
+- `data/*`: source-traceable datasets only
+- `DATA_SOURCES.md`: standalone source audit and chart-to-data mapping
+- `.github/workflows/deploy-pages.yml`: GitHub Pages deployment workflow
 
-Example:
+## Visualisation inventory
+
+This version includes 10 embedded Vega-Lite charts, including one geographic map:
+
+- official regional condition track
+- coastal hotspot map
+- regional pollutant profiles
+- pollutant-grade heatmap
+- monthly DIN / salinity lines
+- rainfall / discharge context scatter
+- suspended solids versus Secchi scatter
+- DIN versus chlorophyll scatter
+- inshore hard coral cover trends
+- Reef-wide target completion bars
+
+## Run locally
+
+Because the page fetches JSON specs and local CSV files, use a static server rather than opening
+`index.html` directly.
+
+Example using the bundled Python runtime or any local Python install:
 
 ```bash
 python -m http.server 8000
@@ -31,39 +54,17 @@ http://localhost:8000
 
 ## Publish on GitHub Pages
 
-This project is already prepared for GitHub Pages as a static site.
+This repository includes a GitHub Actions workflow that deploys the root static site to GitHub
+Pages on every push to `main`.
 
-1. Create a new **public** GitHub repository.
-2. Push this folder to the repository on the `main` branch.
-3. On GitHub, open `Settings -> Pages`.
-4. Under `Build and deployment`, set `Source` to `Deploy from a branch`.
-5. Select branch `main` and folder `/(root)`, then click `Save`.
-
-Your public site URL will be:
+Once pushed, the site is expected at:
 
 ```text
-https://<your-github-username>.github.io/<repository-name>/
+https://viatin11116.github.io/New-project/
 ```
 
-If you change any chart spec or local data, rebuild the static bundle before pushing:
+## Source policy
 
-```bash
-node scripts/build-inline-specs.mjs
-```
-
-## Before submission
-
-- Replace the footer author placeholder in `index.html`
-- Replace or keep the AI acknowledgement line depending on your course submission policy
-- Export your hand-drawn sketch separately to PDF, as required by the assignment brief
-
-## Data windows used here
-
-- Reef Report Card target and condition pages: latest publicly accessible `2021-2022` cycle
-- AIMS nutrient and water-quality monitoring extract used for recent field evidence:
-  `1 January 2024` to `31 December 2025`
-
-## Notes
-
-- The latest AIMS monitoring subset used here does not include Burnett Mary sites, so some recent water-quality charts focus on the monitored stretch from Cape York to Fitzroy.
-- Approximate Reef-region labels for AIMS sites were derived from published site codes and location names so the monitoring data could be compared against Reef Report Card regions.
+- Use only real-world data from official or clearly citable sources.
+- Record every used dataset and its source in `DATA_SOURCES.md`.
+- Do not add unsourced helper CSVs.

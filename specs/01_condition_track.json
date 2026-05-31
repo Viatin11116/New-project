@@ -1,0 +1,147 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 12,
+      "titleFontSize": 13,
+      "titleFontWeight": 700
+    }
+  },
+  "data": { "url": "./data/reportcard_condition_2022.csv" },
+  "transform": [
+    { "filter": "datum.regionCode !== 'GBR'" },
+    {
+      "calculate": "datum.region === 'Cape York region' ? 'Cape York' : datum.region === 'Wet Tropics region' ? 'Wet Tropics' : datum.region === 'Burdekin region' ? 'Burdekin' : datum.region === 'Mackay Whitsunday region' ? 'Mackay Whitsunday' : datum.region === 'Fitzroy region' ? 'Fitzroy' : 'Burnett Mary'",
+      "as": "regionShort"
+    }
+  ],
+  "layer": [
+    {
+      "data": {
+        "values": [
+          { "x0": 1, "x1": 2, "label": "Very poor", "fill": "#b85a46" },
+          { "x0": 2, "x1": 3, "label": "Poor", "fill": "#d98d56" },
+          { "x0": 3, "x1": 4, "label": "Moderate", "fill": "#d8c073" },
+          { "x0": 4, "x1": 5, "label": "Good", "fill": "#8db79a" },
+          { "x0": 5, "x1": 5.9, "label": "Very good", "fill": "#2f7c78" }
+        ]
+      },
+      "mark": { "type": "rect", "opacity": 0.18, "cornerRadius": 10 },
+      "encoding": {
+        "x": {
+          "field": "x0",
+          "type": "quantitative",
+          "scale": { "domain": [1, 5.9] }
+        },
+        "x2": { "field": "x1" }
+      }
+    },
+    {
+      "mark": { "type": "rule", "strokeWidth": 2.2, "color": "#d2dcd9" },
+      "encoding": {
+        "y": {
+          "field": "regionShort",
+          "type": "ordinal",
+          "sort": [
+            "Cape York",
+            "Wet Tropics",
+            "Burdekin",
+            "Mackay Whitsunday",
+            "Fitzroy",
+            "Burnett Mary"
+          ],
+          "title": null
+        },
+        "x": { "value": 1 },
+        "x2": { "value": 5 }
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 180,
+        "stroke": "#fff7ef",
+        "strokeWidth": 2.2
+      },
+      "encoding": {
+        "y": {
+          "field": "regionShort",
+          "type": "ordinal",
+          "sort": [
+            "Cape York",
+            "Wet Tropics",
+            "Burdekin",
+            "Mackay Whitsunday",
+            "Fitzroy",
+            "Burnett Mary"
+          ],
+          "title": null
+        },
+        "x": {
+          "field": "waterQualityRank",
+          "type": "quantitative",
+          "scale": { "domain": [1, 5.9] },
+          "axis": {
+            "title": "2022 inshore water-quality condition",
+            "values": [1, 2, 3, 4, 5],
+            "labelExpr": "datum.value===1 ? 'Very poor' : datum.value===2 ? 'Poor' : datum.value===3 ? 'Moderate' : datum.value===4 ? 'Good' : 'Very good'"
+          }
+        },
+        "color": {
+          "field": "waterQualityRank",
+          "type": "quantitative",
+          "scale": {
+            "domain": [1, 2, 3, 4, 5],
+            "range": ["#b85a46", "#d98d56", "#d8c073", "#8db79a", "#2f7c78"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "region", "title": "Region" },
+          { "field": "waterQualityCondition", "title": "Water-quality condition" },
+          { "field": "gradeLabel", "title": "Overall marine condition" },
+          { "field": "rainfallMm", "title": "Rainfall (mm)" },
+          { "field": "dischargeGl", "title": "River discharge (GL)" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 10,
+        "baseline": "middle",
+        "font": "Trebuchet MS",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "color": "#294246"
+      },
+      "encoding": {
+        "y": {
+          "field": "regionShort",
+          "type": "ordinal",
+          "sort": [
+            "Cape York",
+            "Wet Tropics",
+            "Burdekin",
+            "Mackay Whitsunday",
+            "Fitzroy",
+            "Burnett Mary"
+          ]
+        },
+        "x": { "field": "waterQualityRank", "type": "quantitative" },
+        "text": { "field": "waterQualityCondition" }
+      }
+    }
+  ]
+}

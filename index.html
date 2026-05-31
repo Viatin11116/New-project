@@ -1,249 +1,453 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Land Runoff and Reef Water Quality</title>
+    <title>Great Barrier Reef Inshore Pollution and Water-quality Change</title>
     <meta
       name="description"
-      content="Poster-style data visualisation about land runoff and reef water quality in the Great Barrier Reef catchments."
+      content="A chapter-based story about pollution pressure in Great Barrier Reef inshore waters, using official AIMS monitoring and Reef Plan reporting."
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260601a" />
   </head>
   <body>
-    <div class="poster">
-      <aside class="title-rail">
-        <p class="rail-label">FIT2179 Data Visualisation 2</p>
-        <div class="title-stack">
-          <span>LAND</span>
-          <span>RUNOFF</span>
-        </div>
-        <div class="title-divider"></div>
-        <p class="title-subline">AND REEF WATER QUALITY</p>
-
-        <div class="rail-notes">
-          <div class="mini-panel">
-            <span class="mini-kicker">Why this matters</span>
-            <p>
-              The Reef's inshore water is shaped by what happens upstream: runoff, discharge,
-              nutrients, sediment and pesticide risk.
+    <div class="page-shell">
+      <header class="masthead">
+        <p class="eyebrow">FIT2179 Data Visualisation 2</p>
+        <div class="masthead-grid">
+          <div class="masthead-copy">
+            <p class="kicker">Pollution and Water-quality Story</p>
+            <h1>Great Barrier Reef Inshore Waters</h1>
+            <p class="lede">
+              This page is organised like a long-form infographic. It begins with the inshore
+              monitoring sites, then moves through hotspot patterns, pollutant types, time
+              signals, ecological response and management progress. Taken together, the official
+              records show how runoff pressure appears across locations, seasons, indicators and
+              management outcomes in Great Barrier Reef inshore waters.
             </p>
-          </div>
-          <div class="mini-panel">
-            <span class="mini-kicker">Audience</span>
-            <p>
-              A general Australian audience that needs a readable, one-page explanation rather
-              than an expert dashboard.
-            </p>
-          </div>
-        </div>
-      </aside>
-
-      <main class="poster-body">
-        <header class="hero-grid">
-          <div class="intro-copy hero-copy">
-            <div class="section-pill">Story focus</div>
-            <h1>Runoff still leaves a visible footprint on Reef water.</h1>
-            <p>
-              This page combines the latest public Reef Report Card with recent AIMS monitoring.
-              The story is more focused than a dashboard: targets have improved in places, but
-              inshore water still carries the signatures of runoff through sediment, salinity,
-              clarity and chlorophyll.
-            </p>
-
-            <div class="stat-row">
-              <div class="stat-pill">
+            <div class="stat-strip">
+              <div class="stat-card">
                 <strong>42.4M ha</strong>
                 <span>catchment area draining toward the Reef</span>
               </div>
-              <div class="stat-pill">
-                <strong>73,501 GL</strong>
-                <span>annual discharge to the coast</span>
+              <div class="stat-card">
+                <strong>79</strong>
+                <span>inshore monitoring sites used on this page</span>
               </div>
-              <div class="stat-pill">
+              <div class="stat-card">
                 <strong>779</strong>
-                <span>recent AIMS samples in the latest extract</span>
+                <span>water-quality samples used in the charts</span>
               </div>
             </div>
           </div>
+        </div>
+      </header>
 
-          <article class="panel panel--hero">
-            <div class="panel-copy">
-              <h2>Target progress at Reef-wide scale</h2>
-              <p>
-                Policy progress exists, but nitrogen and sediment are still well short of the
-                2025 goalposts.
-              </p>
-            </div>
-            <div class="vega-slot vega-slot--hero" data-chart="01_overview_attainment"></div>
-          </article>
-        </header>
-
-        <section class="panel panel--wide panel--heatmap">
-          <div class="section-pill">Regional pressure map</div>
-          <div class="wide-head">
-            <div>
-              <h2>Weak grades cluster by region and pollutant type.</h2>
-            </div>
+      <main class="story">
+        <section class="story-section">
+          <div class="section-heading">
+            <span>Chapter 1</span>
+            <h2>Inshore Monitoring Sites</h2>
             <p>
-              The heatmap gives the fastest overview of where runoff pressure remains most
-              persistent across the catchments.
-            </p>
-          </div>
-          <div class="vega-slot vega-slot--wide" data-chart="02_region_grade_heatmap"></div>
-        </section>
-
-        <section class="panel panel--wide panel--map">
-          <div class="section-pill">Main map</div>
-          <div class="wide-head">
-            <div>
-              <h2>Different catchments feed different parts of the Reef coast.</h2>
-            </div>
-            <p>
-              The map keeps the real Queensland coastline, then links inland catchment-side
-              regions to the coastal waters they influence. Wider bands show larger discharge,
-              warmer colour shows dirtier wet-season water, and the right-hand summary ranks
-              the same coastal zones by wet-season suspended solids.
-            </p>
-          </div>
-          <div class="map-combo">
-            <div class="vega-slot vega-slot--map-panel" data-chart="06_sites_map"></div>
-            <div class="vega-slot vega-slot--map-summary" data-chart="12_region_ss_summary"></div>
-          </div>
-        </section>
-
-        <section class="panel-grid panel-grid--two">
-          <article class="panel panel--analysis">
-            <div class="panel-copy">
-              <h2>Official inshore water quality stayed moderate or poor</h2>
-              <p>
-                No region in the latest official condition results reached "good" or "very good"
-                in inshore water quality.
-              </p>
-            </div>
-            <div class="vega-slot" data-chart="04_condition_lollipop"></div>
-          </article>
-
-          <article class="panel panel--analysis">
-            <div class="panel-copy">
-              <h2>Big discharge does not guarantee strong nitrogen gains</h2>
-              <p>
-                Wetter, high-discharge regions are not automatically the regions closest to their
-                dissolved inorganic nitrogen target.
-              </p>
-            </div>
-            <div class="vega-slot" data-chart="05_discharge_din_bubble"></div>
-          </article>
-        </section>
-
-        <section class="panel-grid panel-grid--two">
-          <article class="panel panel--analysis">
-            <div class="panel-copy">
-              <h2>Suspended solids still vary sharply from site to site</h2>
-              <p>
-                Even within the same broad region, some monitored sites remain consistently
-                murkier than others.
-              </p>
-            </div>
-            <div class="vega-slot" data-chart="07_ss_boxplot"></div>
-          </article>
-
-          <article class="panel panel--analysis">
-            <div class="panel-copy">
-              <h2>Wet-season water is usually dirtier than dry-season water</h2>
-              <p>
-                The seasonal contrast is one of the clearest signs that runoff pulses are still
-                shaping inshore water.
-              </p>
-            </div>
-            <div class="vega-slot" data-chart="10_wet_dry_connected_dots"></div>
-          </article>
-        </section>
-
-        <section class="panel panel--wide panel--story">
-          <div class="section-pill">Annual change</div>
-          <div class="wide-head">
-            <div>
-              <h2>Annual policy gains are real, but they are usually small.</h2>
-            </div>
-            <p>
-              Year-on-year reductions matter, but most regions are still advancing in increments
-              rather than leaps.
-            </p>
-          </div>
-          <div class="vega-slot vega-slot--tall" data-chart="03_region_latest_progress"></div>
-        </section>
-
-        <section class="panel panel--wide panel--story">
-          <div class="section-pill">Seasonality</div>
-          <div class="wide-head">
-            <div>
-              <h2>Salinity drops through the wet months, consistent with freshwater runoff.</h2>
-            </div>
-            <p>
-              Monthly medians help show when river influence reaches the coastal water column most
-              strongly.
-            </p>
-          </div>
-          <div class="vega-slot vega-slot--wide" data-chart="08_monthly_salinity_lines"></div>
-        </section>
-
-        <section class="panel-grid panel-grid--two">
-          <article class="panel panel--analysis">
-            <div class="panel-copy">
-              <h2>More suspended solids usually means poorer clarity</h2>
-              <p>
-                Murkier water and shorter Secchi depth travel together, which is exactly what a
-                plume-affected water column should look like.
-              </p>
-            </div>
-            <div class="vega-slot" data-chart="09_ss_secchi_scatter"></div>
-          </article>
-
-          <article class="panel panel--analysis">
-            <div class="panel-copy">
-              <h2>Lower salinity often travels with higher chlorophyll</h2>
-              <p>
-                Fresher inshore water frequently coincides with more chlorophyll, linking runoff
-                conditions with biological response.
-              </p>
-            </div>
-            <div class="vega-slot" data-chart="11_salinity_chla_scatter"></div>
-          </article>
-        </section>
-
-        <section class="closing-band">
-          <div class="closing-copy">
-            <div class="section-pill">Takeaway</div>
-            <h2>The land-to-sea story is still unfinished.</h2>
-            <p>
-              The combined evidence does not describe a Reef that is simply recovered or fixed.
-              It describes a system where some targets are improving slowly, but where inshore
-              waters still react strongly to runoff, plume conditions and wet-season discharge.
+              The first chapter defines the study area. These charts are about monitored inshore
+              waters, where river discharge and coastal runoff first appear in reef-connected
+              water.
             </p>
           </div>
 
-          <div class="meta-grid">
-            <div class="meta-card">
-              <h3>Metadata</h3>
+          <article class="panel panel--wide panel--chart-sandwich">
+            <div class="panel-copy panel-copy--top">
+              <h3>Inshore monitoring sites show suspended-solids hotspots clustering around selected river mouths.</h3>
+              <p>
+                Each point on the map represents one AIMS inshore water-quality monitoring site.
+                Colour shows the percentile group of that site's median suspended-solids value,
+                which helps separate the smaller number of high-value river-mouth sites from the
+                more common low-to-moderate monitoring sites. Using site medians rather than
+                single samples also reflects the more typical level of each location across the
+                monitoring window.
+              </p>
+              <p>
+                Higher suspended-solids values are concentrated around selected river mouths and
+                coastal outlets, including Hell Hole Creek, Groper Creek, Kennedy River mouth and
+                Hull River mouth. That is consistent with how land-derived sediment enters the
+                inshore Reef: runoff tends to arrive first through river mouths and outlet zones,
+                so those sites are more likely to record persistently high turbidity and
+                suspended-solids pressure.
+              </p>
             </div>
+            <div class="vega-slot vega-slot--map" data-chart="02_hotspots_map"></div>
+            <div class="panel-copy panel-copy--bottom">
+              <p>
+                Great Barrier Reef pollution is not a uniform film spread evenly along the coast.
+                It first becomes visible in the
+                inshore receiving zones connected to catchments, especially where muddy runoff is
+                repeatedly delivered to the sea.
+              </p>
+              <p>
+                Because this dataset only covers inshore monitoring sites, the map compares
+                spatial differences between monitored inshore locations rather than differences
+                between inshore waters and offshore coral reefs. It presents relative hotspot
+                intensity within the official inshore monitoring network, and it sets up the next
+                point: hotspot patterns change when the indicator changes.
+              </p>
+            </div>
+          </article>
 
-            <div class="meta-card">
-              <h3>Sources</h3>
-            </div>
+        </section>
 
-            <div class="meta-card">
-              <h3>Notes</h3>
+        <section class="story-section">
+          <div class="section-heading">
+            <span>Chapter 2</span>
+            <h2>Pollutant Types</h2>
+            <p>
+              The Reef Plan does not treat runoff as one undivided issue. It tracks nitrogen,
+              sediment, particulate nutrients and pesticide risk separately because each creates a
+              different management problem.
+            </p>
+          </div>
+
+          <article class="panel panel--split panel--split-wide panel--indicator-story">
+            <div class="panel-copy">
+              <h3>Hotspots change by indicator</h3>
+              <p>
+                Inshore water quality cannot be summarised by a single “most polluted region.”
+                Dissolved inorganic nitrogen, suspended solids and chlorophyll a reflect different
+                kinds of water-quality pressure, so the same region changes rank depending on which
+                indicator is being viewed.
+              </p>
+              <p>
+                The reason is that the three indicators describe different processes. DIN is closer
+                to nutrient enrichment, suspended solids to sediment and turbidity, and chlorophyll
+                a to biological response. When the metric changes, the hotspot story changes too.
+              </p>
+              <p>
+                Because the three indicators use different units and value ranges, bar lengths
+                should only be compared within the same panel, not directly across indicators. On
+                that basis, Mackay Whitsunday stands out for suspended solids and chlorophyll a,
+                while Fitzroy and Burdekin rank higher for dissolved inorganic nitrogen.
+              </p>
+              <p>
+                Great Barrier Reef inshore pollution is not a single pressure with a single
+                hotspot. Different pollutant pathways stand out in different regions, so public
+                discussion of the problem works better when those differences stay visible.
+              </p>
             </div>
+            <div class="vega-slot" data-chart="03_region_pollution_profiles"></div>
+          </article>
+
+          <article class="panel panel--chart-sandwich">
+            <div class="panel-copy panel-copy--top">
+              <h3>Reef Plan Pollutant Grades</h3>
+              <p>
+                This heatmap places the management framework directly on the page. It shows which
+                pollutant groups are being tracked and which regions still receive weaker grades for
+                each type of pressure.
+              </p>
+              <p>
+                Read it as a chapter about management categories rather than a search for one worst
+                place. The official grades make clear that different regions are being held back by
+                different pollutant pressures: nitrogen remains weak in several regions, sediment is
+                especially weak in parts of the central and southern catchments, and pesticide risk
+                is generally closer to the target except in Mackay Whitsunday.
+              </p>
+            </div>
+            <div class="vega-slot vega-slot--wide" data-chart="04_pollutant_grade_heatmap"></div>
+            <div class="panel-copy panel-copy--bottom">
+              <p>
+                Those differences reflect the fact that pollutants do not come from identical
+                sources or follow identical pathways. Nutrients, sediment, particulate nutrients and
+                pesticides are shaped by different land uses, erosion processes and management
+                histories, so it is unsurprising that their regional grades diverge.
+              </p>
+              <p>
+                Reef pollution is not only about whether condition is weak or strong overall; it is also
+                about which pollutant pathway is still holding a region back, and why that pathway
+                remains difficult to manage.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section class="story-section">
+          <div class="section-heading">
+            <span>Chapter 3</span>
+            <h2>Time Signal</h2>
+            <p>
+              The next chapter asks when pressure becomes clearer. Monthly monitoring and annual
+              context both suggest that the inshore signal strengthens alongside freshwater input,
+              rainfall and river discharge.
+            </p>
+          </div>
+
+          <div class="panel-grid panel-grid--two">
+            <article class="panel panel--chart-sandwich">
+              <div class="panel-copy panel-copy--top">
+                <h3>Monthly DIN and Salinity</h3>
+                <p>
+                  These two variables are shown together because they move in opposite directions.
+                  The chart uses monthly medians from the 2024-2025 inshore sample window, so the
+                  goal is not to describe one site or one flood event, but to show what the typical
+                  monthly signal looks like within the extracted dataset.
+                </p>
+                <p>
+                  The pattern is fairly clear. DIN rises from about 0.35 mg/L in January to about
+                  0.42 in February and around 0.535 in March, while salinity drops over the same
+                  period from about 34.4 PSU to around 32.2 and then 31.7. By October, DIN falls to
+                  roughly 0.13 mg/L while salinity returns to about 35.65 PSU.
+                </p>
+              </div>
+              <div class="vega-slot" data-chart="06_monthly_din_salinity"></div>
+              <div class="panel-copy panel-copy--bottom">
+                <p>
+                  This kind of pattern is consistent with seasonal freshwater input. During wetter
+                  months, more land-derived freshwater enters the inshore strip, which lowers salinity
+                  and can carry nutrient-rich runoff into coastal waters at the same time.
+                </p>
+                <p>
+                  Pollution pressure is not static through the year. The inshore Reef is more exposed
+                  at some times than others, especially when runoff
+                  pathways are active. The chart is still only a sample-window summary rather than a
+                  full climatology, but it gives the story a clear seasonal rhythm.
+                </p>
+              </div>
+            </article>
+
+            <article class="panel panel--chart-sandwich">
+              <div class="panel-copy panel-copy--top">
+                <h3>Rainfall, Discharge and 2022 Condition</h3>
+                <p>
+                  This chart provides the broader yearly setting. It places annual rainfall, river
+                  discharge per area and the official 2022 inshore condition grades in one frame, so
+                  the six reporting regions can be compared against a shared hydro-climatic
+                  background.
+                </p>
+                <p>
+                  The contrasts are important. Wet Tropics combines the highest rainfall and highest
+                  discharge density yet remains moderate; Mackay Whitsunday also sits in a high-rainfall,
+                  high-discharge setting but is graded poor; Fitzroy and Burnett Mary are also poor
+                  despite lower discharge density. Rainfall clearly matters, but it does not act as a
+                  simple one-variable explanation for condition grades.
+                </p>
+              </div>
+              <div class="vega-slot" data-chart="08_rainfall_context"></div>
+              <div class="panel-copy panel-copy--bottom">
+                <p>
+                  The reason is that rainfall and discharge shape exposure, but they are not the only
+                  influences on regional condition. Historical pollutant loads, catchment size,
+                  management history and ecological vulnerability also affect how weak or resilient a
+                  region appears in the official result.
+                </p>
+                <p>
+                  Great Barrier Reef inshore pollution is not only a marine story; it is also a
+                  catchment and runoff story. The
+                  chart helps explain why the official 2022 decline was uneven across regions rather
+                  than geographically uniform.
+                </p>
+              </div>
+            </article>
           </div>
         </section>
+
+        <section class="story-section">
+          <div class="section-heading">
+            <span>Chapter 4</span>
+            <h2>Ecological Response</h2>
+            <p>
+              Water-quality indicators matter because they change the inshore environment. This
+              chapter links turbidity, nutrients and biological response back to visible ecological
+              outcomes.
+            </p>
+          </div>
+
+          <div class="panel-grid panel-grid--two">
+            <article class="panel panel--chart-sandwich">
+              <div class="panel-copy panel-copy--top">
+                <h3>Suspended Solids and Secchi Depth</h3>
+                <p>
+                  Secchi depth is a practical measure of how far someone can see into the water.
+                  This means the scatter plot does more than compare two variables mathematically: it
+                  translates suspended-solids pressure into a more intuitive environmental effect,
+                  namely reduced water clarity.
+                </p>
+                <p>
+                  The cloud of points shows that higher suspended-solids values are usually associated
+                  with lower Secchi depth. At very low suspended-solids levels, sites still span a
+                  wider range of visibility outcomes. But once suspended solids move into higher
+                  ranges, the points compress toward lower clarity, including observations near zero
+                  metres.
+                </p>
+              </div>
+              <div class="vega-slot" data-chart="09_ss_secchi_scatter"></div>
+              <div class="panel-copy panel-copy--bottom">
+                <p>
+                  The pattern appears because suspended particles block and scatter light. Murkier
+                  water reduces visibility, but it also reduces how much light reaches benthic
+                  habitats and shallow ecological communities.
+                </p>
+                <p>
+                  Suspended-solids hotspots are not only numbers on a map; they can also correspond
+                  to darker, more light-limited inshore
+                  environments. The scatter is not a one-factor causal model, but the overall
+                  direction is clear.
+                </p>
+              </div>
+            </article>
+
+            <article class="panel panel--chart-sandwich">
+              <div class="panel-copy panel-copy--top">
+                <h3>DIN and Chlorophyll a</h3>
+                <p>
+                  Chlorophyll a is commonly used as an indicator of phytoplankton biomass. This
+                  shows the biological side of the runoff story: DIN is a nutrient-input
+                  indicator, while chlorophyll a is closer to a biological response.
+                </p>
+                <p>
+                  The scatter is not a tight straight line, but the overall direction still matters.
+                  Most samples cluster in the lower-DIN, lower-chlorophyll space. As DIN moves
+                  upward, the range of chlorophyll outcomes widens and the highest chlorophyll values
+                  appear in the higher-DIN part of the plot.
+                </p>
+              </div>
+              <div class="vega-slot" data-chart="10_din_chla_scatter"></div>
+              <div class="panel-copy panel-copy--bottom">
+                <p>
+                  This pattern is consistent with a simple ecological explanation. When more dissolved
+                  inorganic nitrogen is available, phytoplankton have better access to a key nutrient,
+                  so higher biological activity becomes more likely when light and residence time are
+                  also suitable.
+                </p>
+                <p>
+                  Runoff pressure does not only alter chemistry; it can also shift the biological
+                  activity of inshore waters. At the
+                  same time, light, residence time, mixing and other nutrients still matter, so the
+                  relationship is best understood as a tendency rather than a fixed rule.
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <article class="panel panel--chart-sandwich">
+            <div class="panel-copy panel-copy--top">
+              <h3>Inshore Hard Coral Cover</h3>
+              <p>
+                The coral record extends the story into longer-term ecological response. It does
+                not claim that runoff alone explains every change, but it shifts the story from
+                short-term water-quality variation to long-run ecological trajectories between 2005
+                and 2022.
+              </p>
+              <p>
+                The regional trajectories are notably uneven. Wet Tropics rises from about 30.9 in
+                2005 to about 39.3 in 2022, while Burdekin increases from roughly 17.9 to 29.0.
+                Fitzroy starts high, falls sharply by 2015, and then partially recovers by 2022.
+                Mackay Whitsunday shows the clearest lingering decline, remaining far below its
+                mid-2010s level by the end of the series.
+              </p>
+            </div>
+            <div class="vega-slot vega-slot--wide" data-chart="11_coral_cover_trends"></div>
+            <div class="panel-copy panel-copy--bottom">
+              <p>
+                The reason such patterns matter is that coral cover responds to multiple pressures
+                at once: storms, heat stress, recruitment, macroalgae competition and water-quality
+                conditions all shape recovery. Runoff does not explain everything, but cleaner or
+                dirtier inshore environments can influence how well reefs recover after disturbance.
+              </p>
+              <p>
+                This moves the story beyond pollution readings and into long-term ecological
+                consequence. The inshore water-quality story matters because it helps shape the
+                conditions under which reefs recover, stall or decline. The figure still needs
+                cautious interpretation, but it shows clearly that recovery is uneven across
+                regions.
+              </p>
+            </div>
+          </article>
+        </section>
+
+        <section class="story-section">
+          <div class="section-heading">
+            <span>Chapter 5</span>
+            <h2>Management Progress</h2>
+            <p>
+              The final chapter returns to policy. Official targets show that some pollutants are
+              much closer to completion than others, while the latest condition result remains only
+              moderate or below across all inshore regions.
+            </p>
+          </div>
+
+          <div class="panel-grid panel-grid--two">
+            <article class="panel panel--chart-sandwich">
+              <div class="panel-copy panel-copy--top">
+                <h3>Target Completion Rates</h3>
+                <p>
+                  These bars convert the Reef Plan results into one comparable scale: the share of
+                  each target already completed. That conversion matters because it separates an
+                  absolute reduction value from the share of the target already achieved.
+                </p>
+                <p>
+                  On that standardised scale, pesticides sit closest to completion at about 96%,
+                  particulate phosphorus reaches about 93%, particulate nitrogen about 77%, sediment
+                  about 64%, and dissolved inorganic nitrogen only about 47%.
+                </p>
+              </div>
+              <div class="vega-slot" data-chart="12_target_gap_bars"></div>
+              <div class="panel-copy panel-copy--bottom">
+                <p>
+                  The slower progress on DIN and sediment is consistent with the nature of those
+                  pressures. They are often linked to broad land use, diffuse runoff and erosion
+                  processes across large catchments, which are generally harder to reduce quickly than
+                  more targeted management issues.
+                </p>
+                <p>
+                  This is what makes the management gap legible. The page is not only asking where
+                  pollution appears; it is also asking whether management is catching up. These are
+                  Reef-wide cumulative progress values rather than single-year concentration readings,
+                  so they show the policy position reached by June 2022 before the next chart returns
+                  to the latest official inshore condition outcome.
+                </p>
+              </div>
+            </article>
+
+            <article class="panel panel--chart-sandwich">
+              <div class="panel-copy panel-copy--top">
+                <span class="section-tag">Latest official result</span>
+                <h2>Inshore Water-quality Condition</h2>
+                <p>
+                  This final card brings the story back to the present. Even where progress exists,
+                  the 2022 official inshore result still shows no region above moderate. That makes
+                  it the simplest summary of the current condition story.
+                </p>
+                <p>
+                  The regional split is straightforward: Cape York, Wet Tropics and Burdekin are
+                  graded moderate, while Mackay Whitsunday, Fitzroy and Burnett Mary are graded
+                  poor. No region reaches good or very good.
+                </p>
+              </div>
+              <div class="vega-slot" data-chart="01_condition_track"></div>
+              <div class="panel-copy panel-copy--bottom">
+                <p>
+                  This remains the case because regional condition is shaped by accumulated pressure,
+                  uneven ecological recovery and the fact that several pollutant categories still
+                  lag behind target. Policy progress does not immediately translate into a fully
+                  healthy inshore condition picture.
+                </p>
+                <p>
+                  The hotspot maps, seasonal patterns, ecological relationships and target gaps all
+                  lead back here:
+                  Great Barrier Reef inshore pollution is still a live regional issue rather than a
+                  resolved one. The chart is highly summarised, but it serves as the official
+                  closing frame for the whole story.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
       </main>
     </div>
 
     <script src="./vendor/vega.min.js"></script>
     <script src="./vendor/vega-lite.min.js"></script>
     <script src="./vendor/vega-embed.min.js"></script>
-    <script src="./charts-inline.js"></script>
-    <script src="./app.js"></script>
+    <script src="./app.js?v=20260531g"></script>
   </body>
 </html>
+

@@ -1,9 +1,47 @@
 # Draft Moodle Description
 
-This visualisation looks at **land runoff and reef water quality in the Great Barrier Reef catchments**. The goal is to help an average Australian reader understand that reef condition is not only driven by what happens offshore, but also by what is washed down from land through rivers, flood plumes and inshore water. I chose this topic because reef decline is often discussed in broad terms, while the land-to-sea link is harder to see quickly in ordinary news coverage. The audience is a general public audience rather than technical scientists, so the story avoids specialist jargon where possible and uses direct labels such as "poor clarity", "moderate water quality" and "target achieved".
+This visualisation examines **how land runoff still shapes pollution pressure in the Great Barrier
+Reef's inshore waters**. The goal is to help a general Australian reader understand a problem that
+is often discussed only in broad environmental terms. Instead of talking about "runoff" as an
+abstract upstream issue, the page shows where pollution pressure clusters, which pollutants matter,
+when the signal intensifies, what ecological consequences appear, and whether management progress is
+keeping up. I chose this topic because the Reef is widely recognised, but the land-to-sea pollution
+pathway is much harder for a general audience to grasp quickly. The language is intentionally plain:
+"wet-season water", "target completion", "poorer clarity" and "moderate condition" are easier to read
+than specialist scientific terminology.
 
-The visualisation combines **two official data sources**. The first is the **Reef 2050 Water Quality Improvement Plan Reef Water Quality Report Card** at `reportcard.reefplan.qld.gov.au`, using the latest publicly accessible **2021-2022** target and inshore condition pages as accessed on **17 May 2026**. These pages provide regional grades, cumulative progress toward 2025 targets, annual progress, catchment profile statistics, and official condition statements for inshore water quality. The second source is the **Australian Institute of Marine Science Water Quality download service** at `data.aims.gov.au/water-quality/`, using the latest nutrient and water-quality extract for **1 January 2024 to 31 December 2025**. From this extract I kept a compact set of attributes that are easy to explain to a general audience: suspended solids, salinity, chlorophyll a and Secchi depth.
+The visualisation combines **three official data sources** plus a sourced basemap. The first source
+is the **Reef Plan report card** on `reefplan.qld.gov.au` / `reportcard.reefplan.qld.gov.au`. As
+checked on **30 May 2026**, the latest publicly accessible official report card is still the
+**2021 and 2022** release, so I used its regional target results and 2022 inshore condition
+results. These pages provide pollutant target grades, cumulative progress toward targets, and
+rainfall / discharge context. The second source is the **Australian Institute of Marine Science
+Marine Monitoring Program for Inshore Water Quality**, using a local extract from the official
+physico-chemical and nutrient database. The extract covers **779 samples from 3 January 2024 to
+16 July 2025** across 79 site codes. The third source is the **AIMS Great Barrier Reef Marine
+Monitoring Program coral dataset**, used for long-run inshore hard coral cover trends from **2005
+to 2022**. Most summaries such as medians, monthly lines, rainfall / discharge context and
+coral-cover means are calculated directly inside the Vega-Lite specifications. Each chart on the
+page includes a visible source link, and all datasets are documented separately in
+`DATA_SOURCES.md`.
 
-I used several idioms because the story needs both overview and evidence. A normalised bar chart shows how close each Reef-wide target is to its 2025 benchmark. A regional heatmap shows where weak grades cluster. A faceted lollipop plot shows that the latest annual gains are often small even where progress exists. A second lollipop chart converts official inshore water-quality condition into an easy regional comparison. A bubble chart combines discharge, rainfall and nitrogen progress to show that wetter regions are not automatically near their targets. The geographic map places recent AIMS monitoring sites in context, while boxplots, line charts, connected dots and scatter plots show how recent field measurements still carry a runoff signature through higher suspended solids, poorer clarity, lower salinity and higher chlorophyll.
+I used 10 different Vega-Lite views because the story needs both overview and evidence. The page
+opens with a coastal map comparing median suspended solids across recent inshore monitoring sites,
+then moves into regional profiles for dissolved inorganic nitrogen, suspended
+solids and chlorophyll. A heatmap introduces the pollutant families tracked by the Reef Plan.
+Time-based charts now focus on monthly DIN and salinity variation plus rainfall / discharge context
+from the report card. Two scatter plots show consequences in the water column: more suspended
+solids are associated with lower Secchi depth, while higher nitrogen is associated with higher
+chlorophyll. A long-run coral chart then extends the ecological story by showing that inshore hard
+coral cover has not recovered evenly across regions. Finally, a Reef-wide target-completion chart and a
+repeated problem-framing condition view close the story by reinforcing that management progress is
+still incomplete.
 
-The main design choice was to make the page read like a guided argument rather than an exploration dashboard. The layout moves from policy targets, to official condition, to recent field measurements. Colour is used consistently: greener hues imply better grades, while brown-orange tones imply runoff pressure. Typography uses a stronger editorial heading face to give the page a clear voice, while body copy stays simple and readable. Interactivity is deliberately light, limited mostly to hover tooltips, because the assignment brief emphasises presentation and storytelling over expert analysis tools.
+The main design decision was to make the page feel like an editorial field report rather than an
+exploration dashboard. The layout follows a five-part sequence that mirrors the story logic:
+spatial pattern, pollutant type, time signal, ecological consequences, and management progress.
+Colour is used consistently: rust and sand colours imply pressure or lagging grades, while teal
+and green imply stronger condition or recovery. The typography uses a strong serif headline style
+to create a distinct visual voice, while body text stays readable and compact. Interactivity is
+light and purposeful, mainly hover tooltips, because the assignment brief prioritises communication
+and storytelling over expert analytical controls.
