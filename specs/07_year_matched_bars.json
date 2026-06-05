@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "autosize": { "type": "fit", "contains": "padding" },
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    },
+    "header": {
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 12,
+      "titleFontSize": 12
+    },
+    "legend": {
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  },
+  "data": { "url": "./data/aims_samples_2024_2025.csv" },
+  "transform": [
+    { "filter": "toNumber(datum.month) <= 7" },
+    {
+      "fold": [
+        "dissolvedInorganicNitrogen",
+        "suspendedSolids",
+        "chlorophyllA",
+        "salinity"
+      ],
+      "as": ["metric", "value"]
+    },
+    { "filter": "isValid(datum.value)" },
+    {
+      "calculate": "datum.metric === 'dissolvedInorganicNitrogen' ? 'DIN' : datum.metric === 'suspendedSolids' ? 'SS' : datum.metric === 'chlorophyllA' ? 'Chl-a' : 'Salinity'",
+      "as": "metricLabel"
+    },
+    {
+      "calculate": "datum.metric === 'dissolvedInorganicNitrogen' ? 1 : datum.metric === 'suspendedSolids' ? 2 : datum.metric === 'chlorophyllA' ? 3 : 4",
+      "as": "metricOrder"
+    },
+    {
+      "aggregate": [{ "op": "median", "field": "value", "as": "medianValue" }],
+      "groupby": ["year", "metricLabel", "metricOrder"]
+    }
+  ],
+  "facet": {
+    "column": {
+      "field": "metricLabel",
+      "sort": { "field": "metricOrder", "order": "ascending" },
+      "title": null,
+      "header": { "labelFontWeight": 700, "labelOrient": "bottom", "labelPadding": 10 }
+    }
+  },
+  "resolve": {
+    "scale": {
+      "y": "independent"
+    }
+  },
+  "spec": {
+    "width": 82,
+    "height": 180,
+    "mark": { "type": "bar", "cornerRadiusTopLeft": 8, "cornerRadiusTopRight": 8 },
+    "encoding": {
+      "x": {
+        "field": "year",
+        "type": "ordinal",
+        "title": null,
+        "axis": { "labelAngle": 0 }
+      },
+      "y": {
+        "field": "medianValue",
+        "type": "quantitative",
+        "title": "Median Jan-Jul value",
+        "axis": { "tickCount": 4 }
+      },
+      "color": {
+        "field": "year",
+        "type": "nominal",
+        "scale": { "domain": ["2024", "2025"], "range": ["#9ecdc7", "#b85a46"] },
+        "legend": { "title": null, "orient": "bottom" }
+      },
+      "tooltip": [
+        { "field": "metricLabel", "title": "Metric" },
+        { "field": "year", "title": "Year" },
+        { "field": "medianValue", "title": "Median Jan-Jul value", "format": ".3f" }
+      ]
+    }
+  }
+}

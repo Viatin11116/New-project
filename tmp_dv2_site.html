@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="description" content="Australia's Gaming Nation — a data-driven visual essay on how video games became one of Australia's largest cultural pastimes and a fast-growing export industry." />
+  <meta name="author" content="FIT2179 Data Visualisation 2 student project" />
+  <meta property="og:title" content="Australia's Gaming Nation" />
+  <meta property="og:description" content="The rise of Australian video game culture and industry, told through data." />
+  <title>Australia's Gaming Nation — a data essay on Australian video games</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/base-min.css">
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.30.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.21.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.26.0"></script>
+</head>
+<body>
+
+  <!-- Skip-link for accessibility -->
+  <a class="skip-link" href="#story">Skip to story</a>
+
+  <!-- Top masthead -->
+  <header class="masthead">
+    <div class="wrap masthead-inner">
+      <div class="masthead-brand">
+        <span class="brand-mark"></span>
+      </div>
+      <nav class="masthead-nav">
+        <a href="#section-players">Players</a>
+        <a href="#section-industry">Industry</a>
+        <a href="#section-map">Map</a>
+        <a href="#section-studios">Studios</a>
+        <a href="#section-future">Future</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="story">
+
+    <!-- ========== SECTION 1 · HERO ========== -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="kicker">Australia · 2026 · </p>
+        <h1 id="hero-title" class="hero-title">
+          <span class="hero-word">Australia's</span>
+          <span class="hero-word accent-cyan">Gaming</span>
+          <span class="hero-word">Nation</span>
+        </h1>
+        <p class="hero-deck">
+          We tell ourselves a story about who plays video games: it's teenage boys, alone in a bedroom, lost in a fantasy. The Australian data tells a different story — one of mothers and grandparents, of indie studios in Hobart, of a half-billion-dollar export industry, and of a hobby that has quietly become a defining part of national culture.
+        </p>
+      </div>
+
+      <div class="wrap hero-stat">
+        <div class="hero-stat-text">
+          <p class="kicker accent-cyan">The headline figure</p>
+          <h2 class="hero-stat-num">82<span class="hero-stat-pct">%</span></h2>
+          <p class="hero-stat-cap">of Australians play video games — across every age group and every state. Each square in the grid represents one in a hundred Australians. The cyan squares play.</p>
+          <p class="caption">Source: <em>Australia Plays 2025</em>, IGEA &amp; Bond University (national survey of 1,241 households).</p>
+        </div>
+        <figure class="viz viz-hero-waffle">
+          <div id="viz-hero-waffle" class="viz-frame"></div>
+        </figure>
+      </div>
+
+      <div class="wrap hero-cards">
+        <article class="card">
+          <p class="kicker">Gender</p>
+          <h3>For the first time in 20 years of research, <span class="accent-magenta">women outnumber men</span> among Australian gamers.</h3>
+          <figure class="viz">
+            <div id="viz-gender" class="viz-frame"></div>
+          </figure>
+          <p class="caption">Australia Plays 2025. The 3-point shift since 2023 sits within sampling error, but the long-term direction is unmistakable.</p>
+        </article>
+
+        <article class="card">
+          <p class="kicker">Households</p>
+          <h3>Nearly nine in ten Australian homes contain at least one gaming device. Half own three or more.</h3>
+          <figure class="viz">
+            <div id="viz-households" class="viz-frame"></div>
+          </figure>
+          <p class="caption">Smartphones count as gaming devices in this measure — they are the platform Australians spend the most money on.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 2 · WHO PLAYS ========== -->
+    <section id="section-players" class="section section-light" aria-labelledby="players-title">
+      <div class="wrap">
+        <p class="kicker accent-cyan">Chapter 01 · The players</p>
+        <h2 id="players-title" class="section-title">The average gamer is 35, working full-time, and probably your colleague.</h2>
+        <p class="lede">Two decades ago the gaming stereotype was reasonably accurate: most players really were young men. That picture has gone. Today, 81% of Australian players are adults. 71% are of working age. One in ten is over 65. The age distribution of the gaming population now closely mirrors the age distribution of Australia itself.</p>
+      </div>
+
+      <div class="wrap section-content">
+        <header class="section-header">
+          <h3 class="hsmall">Who plays — by age and gender</h3>
+          <p class="caption">Each bar represents the share of <strong>all</strong> Australian gamers in that age band and gender. The pyramid is widest in the 25–44 bracket — the parents-with-kids years.</p>
+        </header>
+        <figure class="viz viz-wide">
+          <div id="viz-age" class="viz-frame"></div>
+          <figcaption class="caption">Source: <em>Australia Plays 2025</em>, IGEA &amp; Bond University. Derived from the report's age × gender cross-tabulations.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap two-col">
+        <div>
+          <p class="kicker">Devices</p>
+          <h3 class="hsmall">Consoles still rule. But almost everyone is also playing on a phone.</h3>
+          <p>The Xbox–PlayStation–Nintendo console remains the single most-used gaming device in Australia, present in 87% of player households. But mobile gaming has overtaken the PC: more Australians game on a smartphone than at a desk, and mobile is the platform on which Australians spend the most money each year.</p>
+          <p>Players move between devices fluidly. Most use at least three, which is why the percentages here do not sum to 100.</p>
+        </div>
+        <figure class="viz">
+          <div id="viz-devices" class="viz-frame"></div>
+          <figcaption class="caption">Multiple-response question; gamers count once per device used.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap two-col">
+        <figure class="viz">
+          <div id="viz-motivations" class="viz-frame"></div>
+          <figcaption class="caption">Source: <em>Australia Plays 2025</em>. Respondents could endorse any number of reasons.</figcaption>
+        </figure>
+        <div>
+          <p class="kicker">Why they play</p>
+          <h3 class="hsmall">For most Australians, gaming is how they relax and how they feel they're getting good at something.</h3>
+          <p>The motivation chart breaks the most enduring stereotype about gamers — that they are escapists, isolated, addicted. The two top reasons Australians give for playing are <em>a sense of achievement</em> and <em>entertainment</em>. Three in four say they play to manage stress; six in ten play to connect with friends or family. Only about half play to escape.</p>
+          <p>Seventy-seven percent of Australian gamers play with other people, online or in the same room.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 3 · INDUSTRY GROWTH ========== -->
+    <section id="section-industry" class="section section-dark" aria-labelledby="industry-title">
+      <div class="wrap">
+        <p class="kicker accent-purple">Chapter 02 · The industry</p>
+        <h2 id="industry-title" class="section-title">Behind the players is a half-billion-dollar industry that has tripled in a decade.</h2>
+        <p class="lede">The Australian Game Development Survey (AGDS) is the most rigorous measurement of Australia's local games industry. Across ten years of surveys, it has documented an extraordinary climb: from 63 studios in FY16 to 141 today, and from $115 million in revenue to $608 million.</p>
+      </div>
+
+      <div class="wrap section-content">
+        <header class="section-header">
+          <h3 class="hsmall">Industry revenue, FY2016–FY2025</h3>
+          <p class="caption">The cyan line tracks AGDS-reported industry revenue. FY2025 is asterisked because IGEA combined survey responses with supplementary Sensor Tower data for the first time, making the headline figure not strictly comparable to prior years.</p>
+        </header>
+        <figure class="viz viz-wide">
+          <div id="viz-revenue" class="viz-frame"></div>
+          <figcaption class="caption">Source: IGEA AGDS Snapshots, FY2016 through FY2025. FY2018 was not surveyed.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap two-col">
+        <div>
+          <p class="kicker">Jobs</p>
+          <h3 class="hsmall">Full-time employment has nearly tripled — and women have grown from 19% of staff to 22%.</h3>
+          <p>In FY2016 there were 842 full-time game-development jobs in Australia. By FY2025 there are 2,443 — and over half of surveyed studios say they plan to hire again in 2026. The workforce is also slowly diversifying: women and gender-diverse employees together accounted for under 19% of staff in FY16 and now exceed 26%.</p>
+          <p>Industry-wide, FY24 saw a small contraction during a global games downturn. FY25 shows employment holding steady while revenue surges.</p>
+        </div>
+        <figure class="viz">
+          <div id="viz-employment" class="viz-frame"></div>
+          <figcaption class="caption">"Trans, non-binary &amp; gender-diverse" became a separately reported category in FY2019.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap section-content section-feature">
+        <header class="section-header">
+          <p class="kicker accent-cyan">The export story</p>
+          <h3 class="hsmall">Ninety-five cents in every dollar earned by an Australian games studio comes from a player overseas.</h3>
+          <p class="caption">The cyan stream is revenue leaving Australia — sold to international platforms, publishers, and players. The purple stream is the comparatively tiny share sold domestically. Together they form one of the most export-oriented creative industries in the country.</p>
+        </header>
+        <figure class="viz viz-feature">
+          <div id="viz-export" class="viz-frame"></div>
+          <figcaption class="caption">Source: AGDS FY2025. Splits are reported in aggregate; domestic share inferred from the 95% export figure.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 4 · GEOGRAPHY ========== -->
+    <section id="section-map" class="section section-light" aria-labelledby="map-title">
+      <div class="wrap">
+        <p class="kicker accent-cyan">Chapter 03 · The geography</p>
+        <h2 id="map-title" class="section-title">Melbourne is the capital. But Tasmania and Canberra make the most of their size.</h2>
+        <p class="lede">A simple count of studios puts Victoria first by a wide margin — 50 of Australia's 141 studios are headquartered there, and more than a third of all industry jobs are in Melbourne alone. But when you adjust for population, a different geography emerges: small jurisdictions like Tasmania and the ACT have the highest density of game studios per capita in the country.</p>
+      </div>
+
+      <div class="wrap section-content">
+        <header class="section-header">
+          <h3 class="hsmall">Game studios per 100,000 people, by state and territory</h3>
+          <p class="caption">Map projection: Mercator, centred on continental Australia. Colour encodes the derived per-capita rate; tooltip reveals the underlying counts.</p>
+        </header>
+        <figure class="viz viz-map">
+          <div id="viz-map" class="viz-frame"></div>
+          <figcaption class="caption">Derived metric. Sources: AGDS FY2025 (studio counts and locations) combined with Australian Bureau of Statistics National, State and Territory Population, June 2025.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap section-content">
+        <header class="section-header">
+          <h3 class="hsmall">Two ways to read state strength — absolute and per-capita</h3>
+          <p class="caption">Bars show total studio count; dots show per-capita density (studios per 100k people, scaled for the same axis). Where the dot sits high above a small bar, the state punches above its weight.</p>
+        </header>
+        <figure class="viz">
+          <div id="viz-state-bars" class="viz-frame"></div>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 5 · INSIDE STUDIOS ========== -->
+    <section id="section-studios" class="section section-dark" aria-labelledby="studios-title">
+      <div class="wrap">
+        <p class="kicker accent-magenta">Chapter 04 · Inside the studios</p>
+        <h2 id="studios-title" class="section-title">Most Australian studios are smaller than five people. A handful do most of the revenue.</h2>
+        <p class="lede">Inside the AGDS dataset, two truths sit side-by-side. Almost half of all Australian studios have five or fewer staff — the indie, garage-band end of the industry is its largest demographic. And yet a small cohort of mature studios, mostly in Melbourne and Sydney, account for the lion's share of revenue and the largest teams. The shape of the industry is a long tail.</p>
+      </div>
+
+      <div class="wrap section-content">
+        <header class="section-header">
+          <h3 class="hsmall">Each circle is a studio · age vs revenue · sized by headcount · coloured by state</h3>
+          <p class="caption">Use the dropdown to focus on a single state. Hover any circle for the studio's profile. The vertical axis uses a logarithmic scale because revenues range across four orders of magnitude.</p>
+        </header>
+        <figure class="viz viz-wide">
+          <div id="viz-bubble" class="viz-frame"></div>
+          <figcaption class="caption">141 anonymised studios calibrated to AGDS FY2025 aggregates (2,443 total employees, $608.5M total revenue). Individual studio identities are not disclosed.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap section-content">
+        <header class="section-header">
+          <h3 class="hsmall">What everyone in the industry actually does for a job</h3>
+          <p class="caption">Programmers and engineers are still the largest single role, but artists are almost as numerous. Together, the two creative-technical roles account for more than half of the entire workforce.</p>
+        </header>
+        <figure class="viz">
+          <div id="viz-roles" class="viz-frame"></div>
+          <figcaption class="caption">Source: AGDS FY2025 aggregated workforce composition.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ========== SECTION 6 · FUTURE ========== -->
+    <section id="section-future" class="section section-light" aria-labelledby="future-title">
+      <div class="wrap">
+        <p class="kicker accent-cyan">Chapter 05 · The horizon</p>
+        <h2 id="future-title" class="section-title">If the past decade rhymes, Australia will be a billion-dollar games exporter before the end of the decade.</h2>
+        <p class="lede">The chart below projects industry revenue forward to FY2028 using the historical 10-year compound growth rate. The cone shows the range of plausible outcomes. None of this is guaranteed — projections never are — but the direction of travel is consistent: Australia is building a real, durable, globally competitive games industry, and it is doing so at the same time as a generation of its citizens has decided that playing video games is what they do for fun.</p>
+      </div>
+
+      <div class="wrap section-content">
+        <figure class="viz viz-wide">
+          <div id="viz-projection" class="viz-frame"></div>
+          <figcaption class="caption">Projection method: compound annual growth rate of reported FY16–FY25 revenue, with a ±10% uncertainty cone widening over time. Illustrative only; not an IGEA forecast.</figcaption>
+        </figure>
+      </div>
+
+      <div class="wrap closing">
+        <p class="kicker accent-cyan">In summary</p>
+        <p class="closing-statement">
+          Australia is not just a country that plays games. It is becoming a serious gaming nation — culturally, in the 19 million people who pick up a controller every week; socially, in the family living rooms where parents and children play together; and economically, in the studios from Hobart to Brisbane that ship Australian-made games to a global audience.
+        </p>
+        <p class="closing-byline">Thanks for reading.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========== FOOTER · CREDITS & SOURCES ========== -->
+  <footer class="page-footer">
+    <div class="wrap footer-grid">
+      <div class="footer-block">
+        <p class="kicker">Authorship</p>
+        <p>Produced as an academic visualisation project for <strong>FIT2179 Data Visualisation 2</strong> at Monash University. Semester 1, 2026.</p>
+        <p class="caption">© 2026. Vega-Lite specs and source data are released under CC-BY 4.0 for educational reuse.</p>
+      </div>
+      <div class="footer-block">
+        <p class="kicker">Data sources</p>
+        <ul class="src">
+          <li><strong>Australian Game Development Survey (AGDS) FY2025 Snapshot</strong> — Interactive Games &amp; Entertainment Association &amp; Bond University, released March 2026. <span class="src-url">igea.net/2026/03/agds-2025/</span></li>
+          <li><strong>Australia Plays 2025</strong> — IGEA &amp; Bond University, Professor Jeffrey Brand, released September 2025. <span class="src-url">research.bond.edu.au</span></li>
+          <li><strong>Historical AGDS revenue series (FY2016–FY2024)</strong> — IGEA annual snapshots, archived AGDS reports.</li>
+          <li><strong>State population estimates (June 2025)</strong> — Australian Bureau of Statistics, National, state and territory population.</li>
+        </ul>
+      </div>
+      <div class="footer-block">
+        <p class="kicker">Method &amp; tools</p>
+        <ul class="src">
+          <li>All charts built with <strong>Vega-Lite</strong> v5. Specs are in <code>/vega</code> and individually inspectable on GitHub.</li>
+          <li>Page layout uses semantic HTML, Pure.css base, and custom CSS.</li>
+          <li>Studio-level points in the bubble chart are anonymised synthetic data calibrated to AGDS FY2025 aggregates — IGEA does not publish per-studio figures.</li>
+z        </ul>
+      </div>
+    </div>
+    <div class="wrap footer-bar">
+      <span>Australia's Gaming Nation</span>
+      <span>·</span>
+      <span>FIT2179 Data Visualisation 2</span>
+      <span>·</span>
+      <span>2026</span>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,92 @@
+SQL> /*
+SQL>File Name    : AT11.sql
+SQL>Student ID   : 35823194
+SQL>Student Name : Jiaxu Dong
+SQL>Last Modified: 25 May 2026
+SQL>*/
+SQL>
+SQL> SET PAGESIZE 100
+SQL> SET ECHO ON
+SQL> SET FEEDBACK ON
+SQL> SET LINESIZE 200
+SQL>
+SQL> SPOOL AT11-run.txt
+SQL>
+SQL> COLUMN cust_id            FORMAT 9999   HEADING 'CUST_ID'
+SQL> COLUMN customer_name      FORMAT A35    HEADING 'CUSTOMER_NAME'
+SQL> COLUMN courses_completed  FORMAT 999    HEADING 'COURSES_COMPLETED'
+SQL> COLUMN rentals_completed  FORMAT 999    HEADING 'RENTALS_COMPLETED'
+SQL> COLUMN pct_total_rentals  FORMAT 990.00 HEADING 'PCT_TOTAL_RENTALS'
+SQL>
+SQL> WITH trained_customers AS (
+  2      SELECT
+  3          c.cust_id,
+  4          UPPER(c.cust_fname) || ', ' || LOWER(c.cust_lname) AS customer_name,
+  5          COUNT(DISTINCT ct.ct_id) AS courses_completed
+  6      FROM drone.customer c
+  7      JOIN drone.cust_train ct
+  8          ON c.cust_id = ct.cust_id
+  9      GROUP BY
+ 10          c.cust_id,
+ 11          UPPER(c.cust_fname) || ', ' || LOWER(c.cust_lname)
+ 12  ),
+ 13  completed_rentals AS (
+ 14      SELECT
+ 15          ct.cust_id,
+ 16          COUNT(*) AS rentals_completed
+ 17      FROM drone.rental r
+ 18      JOIN drone.cust_train ct
+ 19          ON r.ct_id = ct.ct_id
+ 20      WHERE r.rent_in_dt IS NOT NULL
+ 21      GROUP BY
+ 22          ct.cust_id
+ 23  ),
+ 24  total_completed_rentals AS (
+ 25      SELECT COUNT(*) AS total_rentals
+ 26      FROM drone.rental
+ 27      WHERE rent_in_dt IS NOT NULL
+ 28  )
+ 29  SELECT
+ 30      tc.cust_id,
+ 31      tc.customer_name,
+ 32      tc.courses_completed,
+ 33      NVL(cr.rentals_completed, 0) AS rentals_completed,
+ 34      ROUND(
+ 35          CASE
+ 36              WHEN tcr.total_rentals = 0 THEN 0
+ 37              ELSE (NVL(cr.rentals_completed, 0) / tcr.total_rentals) * 100
+ 38          END,
+ 39          2
+ 40      ) AS pct_total_rentals
+ 41  FROM trained_customers tc
+ 42  LEFT JOIN completed_rentals cr
+ 43      ON tc.cust_id = cr.cust_id
+ 44  CROSS JOIN total_completed_rentals tcr
+ 45  ORDER BY
+ 46      tc.cust_id;
+
+CUST_ID CUSTOMER_NAME                       COURSES_COMPLETED RENTALS_COMPLETED PCT_TOTAL_RENTALS
+------- ----------------------------------- ----------------- ----------------- -----------------
+      1 MANOLO, waren                                       1                 2              9.09
+      2 LENNARD, dudgeon                                    1                 1              4.55
+      3 CHRISTIANA, brightey                                1                 1              4.55
+      4 RAYCHEL, roussel                                    1                 1              4.55
+      5 JAMILL, flannery                                    2                 1              4.55
+      6 SERENE, pabst                                       2                 1              4.55
+      7 GANNON, brenneke                                    1                 1              4.55
+      8 ROBBYN, lintall                                     1                 2              9.09
+      9 TOWNSEND, dunlap                                    4                 4             18.18
+     10 BUDDY, juden                                        1                 1              4.55
+     11 NORRIE, severy                                      1                 1              4.55
+     12 BEVERIE, huntriss                                   1                 1              4.55
+     13 TREV, gravie                                        1                 0              0.00
+     14 GWYNNE, reder                                       1                 1              4.55
+     15 FARLY, harcombe                                     1                 1              4.55
+     16 ALINE, harewood                                     1                 1              4.55
+     17 MURIEL, zambonini                                   1                 1              4.55
+     18 EMORY, sisley                                       1                 1              4.55
+
+18 rows selected.
+
+SQL>
+SQL> SPOOL OFF

@@ -1,0 +1,113 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "background": null,
+  "config": {
+    "view": { "stroke": null },
+    "axis": {
+      "domain": false,
+      "tickColor": "#c7d4d2",
+      "gridColor": "#dbe5e3",
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12,
+      "titleFontWeight": 700
+    },
+    "legend": {
+      "labelColor": "#294246",
+      "titleColor": "#294246",
+      "labelFont": "Trebuchet MS",
+      "titleFont": "Trebuchet MS",
+      "labelFontSize": 11,
+      "titleFontSize": 12
+    }
+  },
+  "data": { "url": "./data/reportcard_targets_2021_2022.csv" },
+  "transform": [
+    { "filter": "datum.regionCode !== 'GBR'" },
+    {
+      "calculate": "datum.gradeRank <= 2 ? 'Lagging' : datum.gradeRank === 3 ? 'Mid-range' : 'On track / baseline'",
+      "as": "statusBucket"
+    },
+    {
+      "calculate": "datum.gradeRank <= 2 ? 1 : 0",
+      "as": "laggingFlag"
+    },
+    {
+      "calculate": "datum.region === 'Cape York region' ? 'Cape York' : datum.region === 'Wet Tropics region' ? 'Wet Tropics' : datum.region === 'Burdekin region' ? 'Burdekin' : datum.region === 'Mackay Whitsunday region' ? 'Mackay Whitsunday' : datum.region === 'Fitzroy region' ? 'Fitzroy' : 'Burnett Mary'",
+      "as": "regionShort"
+    }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "bar", "cornerRadiusEnd": 10 },
+      "encoding": {
+        "y": {
+          "field": "regionShort",
+          "type": "ordinal",
+          "sort": [
+            "Burnett Mary",
+            "Wet Tropics",
+            "Burdekin",
+            "Mackay Whitsunday",
+            "Fitzroy",
+            "Cape York"
+          ],
+          "title": null
+        },
+        "x": {
+          "aggregate": "count",
+          "type": "quantitative",
+          "stack": "zero",
+          "axis": { "title": "Number of official pollutant target grades", "tickCount": 6 }
+        },
+        "color": {
+          "field": "statusBucket",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Lagging", "Mid-range", "On track / baseline"],
+            "range": ["#b85a46", "#d8c073", "#2f7c78"]
+          },
+          "legend": { "title": null, "orient": "bottom" }
+        },
+        "order": {
+          "field": "statusBucket",
+          "sort": ["Lagging", "Mid-range", "On track / baseline"]
+        },
+        "tooltip": [
+          { "field": "region", "title": "Region" },
+          { "field": "statusBucket", "title": "Target-grade bucket" },
+          { "aggregate": "count", "title": "Count" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "font": "Trebuchet MS",
+        "fontSize": 10,
+        "fontWeight": 800,
+        "color": "#fffaf2"
+      },
+      "encoding": {
+        "y": {
+          "field": "regionShort",
+          "type": "ordinal",
+          "sort": [
+            "Burnett Mary",
+            "Wet Tropics",
+            "Burdekin",
+            "Mackay Whitsunday",
+            "Fitzroy",
+            "Cape York"
+          ]
+        },
+        "x": { "aggregate": "count", "type": "quantitative", "stack": "center" },
+        "detail": { "field": "statusBucket" },
+        "text": { "aggregate": "count", "type": "quantitative" }
+      }
+    }
+  ]
+}
